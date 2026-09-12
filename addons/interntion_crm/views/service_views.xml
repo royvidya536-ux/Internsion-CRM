@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_service_view_list" model="ir.ui.view">
+        <field name="name">interntion.service.list</field>
+        <field name="model">interntion.service</field>
+        <field name="arch" type="xml">
+            <list string="Our Services">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="is_new"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_service_view_form" model="ir.ui.view">
+        <field name="name">interntion.service.form</field>
+        <field name="model">interntion.service</field>
+        <field name="arch" type="xml">
+            <form string="Service">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="icon"/>
+                        <field name="url" widget="url"/>
+                        <field name="is_new"/>
+                        <field name="active"/>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_service_action" model="ir.actions.act_window">
+        <field name="name">Our Services</field>
+        <field name="res_model">interntion.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

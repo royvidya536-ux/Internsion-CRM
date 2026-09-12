@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Odoo
+*.pot
+*.log
+
+# Docker volumes are managed by Docker, not git
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

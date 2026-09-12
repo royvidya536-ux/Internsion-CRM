@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="employer_1" model="interntion.employer">
+        <field name="name">Nexora Technologies</field>
+        <field name="sector">technology</field>
+        <field name="partner_since">2023-01-15</field>
+    </record>
+    <record id="employer_2" model="interntion.employer">
+        <field name="name">Bright Finance Partners</field>
+        <field name="sector">finance</field>
+        <field name="partner_since">2023-02-20</field>
+    </record>
+    <record id="employer_3" model="interntion.employer">
+        <field name="name">PulseWave Marketing</field>
+        <field name="sector">marketing</field>
+        <field name="partner_since">2023-03-05</field>
+    </record>
+    <record id="employer_4" model="interntion.employer">
+        <field name="name">CareWell Health Group</field>
+        <field name="sector">healthcare</field>
+        <field name="partner_since">2023-04-10</field>
+    </record>
+    <record id="employer_5" model="interntion.employer">
+        <field name="name">BuildRight Engineering</field>
+        <field name="sector">engineering</field>
+        <field name="partner_since">2023-05-18</field>
+    </record>
+    <record id="employer_6" model="interntion.employer">
+        <field name="name">DataSphere Analytics</field>
+        <field name="sector">data_science</field>
+        <field name="partner_since">2023-06-01</field>
+    </record>
+    <record id="employer_7" model="interntion.employer">
+        <field name="name">Lexington Legal Advisors</field>
+        <field name="sector">legal</field>
+        <field name="partner_since">2023-07-11</field>
+    </record>
+    <record id="employer_8" model="interntion.employer">
+        <field name="name">Momentum Consulting Group</field>
+        <field name="sector">consulting</field>
+        <field name="partner_since">2023-08-22</field>
+    </record>
+</odoo>

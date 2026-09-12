@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_internship_view_list" model="ir.ui.view">
+        <field name="name">interntion.internship.list</field>
+        <field name="model">interntion.internship</field>
+        <field name="arch" type="xml">
+            <list string="Internship Opportunities" decoration-success="is_new">
+                <field name="name"/>
+                <field name="employer_id"/>
+                <field name="sector"/>
+                <field name="duration"/>
+                <field name="is_paid" widget="boolean_toggle"/>
+                <field name="stipend_amount" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="open_positions"/>
+                <field name="application_count"/>
+                <field name="placed_count"/>
+                <field name="is_new"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_internship_view_form" model="ir.ui.view">
+        <field name="name">interntion.internship.form</field>
+        <field name="model">interntion.internship</field>
+        <field name="arch" type="xml">
+            <form string="Internship Opportunity">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_applications" icon="fa-users">
+                            <field name="application_count" widget="statinfo" string="Applications"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="New" bg_color="text-bg-success" invisible="not is_new"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Role title"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employer_id"/>
+                            <field name="sector"/>
+                            <field name="location"/>
+                            <field name="duration"/>
+                            <field name="open_positions"/>
+                        </group>
+                        <group>
+                            <field name="is_paid"/>
+                            <field name="stipend_amount" invisible="not is_paid"/>
+                            <field name="currency_id" invisible="not is_paid" groups="base.group_multi_currency"/>
+                            <field name="is_new"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_internship_view_kanban" model="ir.ui.view">
+        <field name="name">interntion.internship.kanban</field>
+        <field name="model">interntion.internship</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="employer_id"/>
+                <field name="sector"/>
+                <field name="is_new"/>
+                <field name="is_paid"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <strong><field name="name"/></strong>
+                                <span t-if="record.is_new.raw_value" class="badge text-bg-success">New</span>
+                            </div>
+                            <div><field name="employer_id"/></div>
+                            <div><field name="sector"/></div>
+                            <div t-if="record.is_paid.raw_value" class="badge text-bg-info">Paid</div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="interntion_internship_action" model="ir.actions.act_window">
+        <field name="name">Internship Opportunities</field>
+        <field name="res_model">interntion.internship</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Publish your first internship opportunity!</p>
+        </field>
+    </record>
+</odoo>

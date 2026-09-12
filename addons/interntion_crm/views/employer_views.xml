@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_employer_view_list" model="ir.ui.view">
+        <field name="name">interntion.employer.list</field>
+        <field name="model">interntion.employer</field>
+        <field name="arch" type="xml">
+            <list string="Industry Partners">
+                <field name="name"/>
+                <field name="sector"/>
+                <field name="contact_name"/>
+                <field name="contact_email"/>
+                <field name="partner_since"/>
+                <field name="internship_count"/>
+                <field name="application_count"/>
+                <field name="is_industry_partner" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_employer_view_form" model="ir.ui.view">
+        <field name="name">interntion.employer.form</field>
+        <field name="model">interntion.employer</field>
+        <field name="arch" type="xml">
+            <form string="Industry Partner">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_internships" icon="fa-briefcase">
+                            <field name="internship_count" widget="statinfo" string="Internships"/>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_view_applications" icon="fa-users">
+                            <field name="application_count" widget="statinfo" string="Applications"/>
+                        </button>
+                    </div>
+                    <field name="logo" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Employer name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sector"/>
+                            <field name="website" widget="url"/>
+                            <field name="is_industry_partner"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="contact_name"/>
+                            <field name="contact_email" widget="email"/>
+                            <field name="contact_phone" widget="phone"/>
+                            <field name="partner_since"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Internal notes about this industry partner..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_employer_view_kanban" model="ir.ui.view">
+        <field name="name">interntion.employer.kanban</field>
+        <field name="model">interntion.employer</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="sector"/>
+                <field name="internship_count"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div><field name="sector"/></div>
+                            <div><field name="internship_count"/> internships</div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="interntion_employer_action" model="ir.actions.act_window">
+        <field name="name">Industry Partners</field>
+        <field name="res_model">interntion.employer</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add your first industry partner!</p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="faq_1" model="interntion.faq">
+        <field name="question">What is Interntion and how does it work?</field>
+        <field name="category">general</field>
+        <field name="sequence">1</field>
+        <field name="answer"><![CDATA[<p>Interntion is a UK EduTech platform that matches ambitious students with real, paid internships across 20+ sectors, and provides CV preparation, mentorship and job-readiness support.</p>]]></field>
+    </record>
+    <record id="faq_2" model="interntion.faq">
+        <field name="question">Are Interntion internships paid?</field>
+        <field name="category">general</field>
+        <field name="sequence">2</field>
+        <field name="answer"><![CDATA[<p>Yes. All internships facilitated by Interntion are real, paid internships.</p>]]></field>
+    </record>
+    <record id="faq_3" model="interntion.faq">
+        <field name="question">Who can apply for internships through Interntion?</field>
+        <field name="category">eligibility</field>
+        <field name="sequence">3</field>
+        <field name="answer"><![CDATA[<p>Any UK student or international student studying in the UK, from undergraduate to PhD level, can apply.</p>]]></field>
+    </record>
+    <record id="faq_4" model="interntion.faq">
+        <field name="question">How long does it take to get placed?</field>
+        <field name="category">process</field>
+        <field name="sequence">4</field>
+        <field name="answer"><![CDATA[<p>Most students are placed within a few weeks of completing their profile, CV review and interview preparation.</p>]]></field>
+    </record>
+    <record id="faq_5" model="interntion.faq">
+        <field name="question">Do you help international students get UK internships?</field>
+        <field name="category">international</field>
+        <field name="sequence">5</field>
+        <field name="answer"><![CDATA[<p>Yes, Interntion actively supports international students studying in the UK with placements and visa-friendly guidance.</p>]]></field>
+    </record>
+    <record id="faq_6" model="interntion.faq">
+        <field name="question">What industries does Interntion place students in?</field>
+        <field name="category">general</field>
+        <field name="sequence">6</field>
+        <field name="answer"><![CDATA[<p>Students are placed across 20+ industries including Technology, Finance, Marketing, Healthcare, Engineering and more.</p>]]></field>
+    </record>
+    <record id="faq_7" model="interntion.faq">
+        <field name="question">Is there a fee to use Interntion?</field>
+        <field name="category">payment</field>
+        <field name="sequence">7</field>
+        <field name="answer"><![CDATA[<p>Core placement services are free for students; premium mentorship and project-assistance packages may carry a fee.</p>]]></field>
+    </record>
+    <record id="faq_8" model="interntion.faq">
+        <field name="question">Do you provide CV writing and interview preparation?</field>
+        <field name="category">process</field>
+        <field name="sequence">8</field>
+        <field name="answer"><![CDATA[<p>Yes, we provide ATS-optimised CV writing, LinkedIn profile support, cover letters and mock interviews.</p>]]></field>
+    </record>
+    <record id="faq_9" model="interntion.faq">
+        <field name="question">What is your success rate and how is it measured?</field>
+        <field name="category">general</field>
+        <field name="sequence">9</field>
+        <field name="answer"><![CDATA[<p>Our success rate (95%+) is measured as the share of active applicants who receive and accept an internship offer, tracked live on the CRM dashboard.</p>]]></field>
+    </record>
+    <record id="faq_10" model="interntion.faq">
+        <field name="question">How is Interntion different from Bright Network or RateMyPlacement?</field>
+        <field name="category">general</field>
+        <field name="sequence">10</field>
+        <field name="answer"><![CDATA[<p>Unlike listing-only platforms, Interntion provides end-to-end, hands-on placement support: mentorship, CV preparation and guaranteed application tracking through to offer.</p>]]></field>
+    </record>
+</odoo>

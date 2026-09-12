@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_project_view_list" model="ir.ui.view">
+        <field name="name">interntion.project.list</field>
+        <field name="model">interntion.project</field>
+        <field name="arch" type="xml">
+            <list string="Project Assistance Catalogue">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="level"/>
+                <field name="tech_stack"/>
+                <field name="price"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_project_view_form" model="ir.ui.view">
+        <field name="name">interntion.project.form</field>
+        <field name="model">interntion.project</field>
+        <field name="arch" type="xml">
+            <form string="Project">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Project title"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="category"/>
+                            <field name="level"/>
+                            <field name="tech_stack"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="has_source_code"/>
+                            <field name="has_documentation"/>
+                            <field name="has_expert_support"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_project_action" model="ir.actions.act_window">
+        <field name="name">Project Assistance</field>
+        <field name="res_model">interntion.project</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="project_1" model="interntion.project">
+        <field name="name">AI-Based Resume Screening System</field>
+        <field name="category">ai</field>
+        <field name="level">btech</field>
+        <field name="tech_stack">Python, spaCy, Scikit-learn, Flask</field>
+        <field name="description">An NLP-driven system that automatically screens and ranks resumes against job descriptions.</field>
+    </record>
+    <record id="project_2" model="interntion.project">
+        <field name="name">Predictive Stock Market Analysis</field>
+        <field name="category">ml</field>
+        <field name="level">mtech</field>
+        <field name="tech_stack">Python, TensorFlow, Pandas</field>
+        <field name="description">Time-series ML model predicting stock trends using historical market data.</field>
+    </record>
+    <record id="project_3" model="interntion.project">
+        <field name="name">Customer Churn Prediction Dashboard</field>
+        <field name="category">data_science</field>
+        <field name="level">mca</field>
+        <field name="tech_stack">Python, Power BI, Scikit-learn</field>
+        <field name="description">End-to-end churn prediction pipeline with an interactive analytics dashboard.</field>
+    </record>
+    <record id="project_4" model="interntion.project">
+        <field name="name">Smart Attendance System using Face Recognition</field>
+        <field name="category">ai</field>
+        <field name="level">btech</field>
+        <field name="tech_stack">Python, OpenCV, Django</field>
+        <field name="description">Automated attendance tracking using real-time facial recognition.</field>
+    </record>
+    <record id="project_5" model="interntion.project">
+        <field name="name">Blockchain-Based Academic Certificate Verification</field>
+        <field name="category">blockchain</field>
+        <field name="level">phd</field>
+        <field name="tech_stack">Solidity, Ethereum, Web3.js</field>
+        <field name="description">A tamper-proof certificate verification platform built on blockchain.</field>
+    </record>
+</odoo>

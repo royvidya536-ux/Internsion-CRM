@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="internship_1" model="interntion.internship">
+        <field name="name">Software Development Intern</field>
+        <field name="employer_id" ref="employer_1"/>
+        <field name="sector">technology</field>
+        <field name="duration">3 months</field>
+        <field name="is_paid">True</field>
+        <field name="stipend_amount">1200</field>
+        <field name="is_new">True</field>
+        <field name="open_positions">5</field>
+        <field name="description"><![CDATA[<p>Work on real production features alongside senior engineers. Tech stack: Python, React, PostgreSQL.</p>]]></field>
+    </record>
+    <record id="internship_2" model="interntion.internship">
+        <field name="name">Finance &amp; Investment Analyst Intern</field>
+        <field name="employer_id" ref="employer_2"/>
+        <field name="sector">finance</field>
+        <field name="duration">6 months</field>
+        <field name="is_paid">True</field>
+        <field name="stipend_amount">1400</field>
+        <field name="is_new">True</field>
+        <field name="open_positions">3</field>
+        <field name="description"><![CDATA[<p>Assist in financial modelling, market research and client reporting.</p>]]></field>
+    </record>
+    <record id="internship_3" model="interntion.internship">
+        <field name="name">Brand &amp; Digital Marketing Intern</field>
+        <field name="employer_id" ref="employer_3"/>
+        <field name="sector">marketing</field>
+        <field name="duration">3 months</field>
+        <field name="is_paid">True</field>
+        <field name="stipend_amount">1000</field>
+        <field name="open_positions">4</field>
+        <field name="description"><![CDATA[<p>Support campaign planning, social media strategy and brand analytics.</p>]]></field>
+    </record>
+    <record id="internship_4" model="interntion.internship">
+        <field name="name">Healthcare Operations Intern</field>
+        <field name="employer_id" ref="employer_4"/>
+        <field name="sector">healthcare</field>
+        <field name="duration">4 months</field>
+        <field name="is_paid">True</field>
+        <field name="stipend_amount">1100</field>
+        <field name="open_positions">2</field>
+        <field name="description"><![CDATA[<p>Support patient services operations and healthcare data reporting.</p>]]></field>
+    </record>
+    <record id="internship_5" model="interntion.internship">
+        <field name="name">Data Analytics Intern</field>
+        <field name="employer_id" ref="employer_6"/>
+        <field name="sector">data_science</field>
+        <field name="duration">6 months</field>
+        <field name="is_paid">True</field>
+        <field name="stipend_amount">1500</field>
+        <field name="is_new">True</field>
+        <field name="open_positions">3</field>
+        <field name="description"><![CDATA[<p>Build dashboards and predictive models using Python and SQL.</p>]]></field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="testimonial_1" model="interntion.testimonial">
+        <field name="student_name">Arjun Sharma</field>
+        <field name="course">B.Tech CSE</field>
+        <field name="role">Software Intern</field>
+        <field name="rating">5</field>
+        <field name="sequence">1</field>
+        <field name="quote">Interntion helped me land my first internship at a top tech company. The CV guidance and mock interviews made all the difference!</field>
+    </record>
+    <record id="testimonial_2" model="interntion.testimonial">
+        <field name="student_name">Priya Nair</field>
+        <field name="course">MBA Marketing</field>
+        <field name="role">Brand Intern</field>
+        <field name="rating">5</field>
+        <field name="sequence">2</field>
+        <field name="quote">The project assistance was outstanding. My mentor guided me every step. Within 3 months I was offered a full-time role!</field>
+    </record>
+    <record id="testimonial_3" model="interntion.testimonial">
+        <field name="student_name">Daniel Osei</field>
+        <field name="course">BBA Finance</field>
+        <field name="role">Finance Intern</field>
+        <field name="rating">5</field>
+        <field name="sequence">3</field>
+        <field name="quote">Interntion matched me perfectly with a finance firm. The experience I gained was truly invaluable for my career growth.</field>
+    </record>
+</odoo>

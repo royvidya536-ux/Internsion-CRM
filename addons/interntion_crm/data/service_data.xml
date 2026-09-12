@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="service_internship_opportunities" model="interntion.service">
+        <field name="name">Internship Opportunities</field>
+        <field name="code">internship_opportunities</field>
+        <field name="sequence">1</field>
+        <field name="is_new">True</field>
+        <field name="icon">fa-briefcase</field>
+        <field name="url">https://interntion.co.uk/internship-opportunities.html</field>
+        <field name="description">Access real internship roles across 20+ sectors — tech, finance, marketing, healthcare and more, matched to your skills.</field>
+    </record>
+
+    <record id="service_project_assistance" model="interntion.service">
+        <field name="name">Project Assistance</field>
+        <field name="code">project_assistance</field>
+        <field name="sequence">2</field>
+        <field name="icon">fa-code</field>
+        <field name="url">https://interntion.co.uk/projects.html</field>
+        <field name="description">150+ ready-to-submit AI &amp; ML projects with complete source code, documentation and expert support for BTech to PhD.</field>
+    </record>
+
+    <record id="service_work_experience_support" model="interntion.service">
+        <field name="name">Work Experience Support</field>
+        <field name="code">work_experience_support</field>
+        <field name="sequence">3</field>
+        <field name="icon">fa-life-ring</field>
+        <field name="url">https://interntion.co.uk/work-experience-support.html</field>
+        <field name="description">Dedicated mentorship, weekly check-ins, performance feedback and problem resolution throughout your placement.</field>
+    </record>
+
+    <record id="service_cv_job_preparation" model="interntion.service">
+        <field name="name">CV &amp; Job Preparation</field>
+        <field name="code">cv_job_preparation</field>
+        <field name="sequence">4</field>
+        <field name="icon">fa-file-text</field>
+        <field name="url">https://interntion.co.uk/cv-job-preparation.html</field>
+        <field name="description">ATS-optimised CV writing, LinkedIn profile, cover letters, mock interviews and job application strategy.</field>
+    </record>
+</odoo>

@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: interntion_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${DB_USER:-odoo}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-odoo}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - interntion_db_data:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-odoo}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - interntion_net
+
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: interntion_odoo
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${ODOO_PORT:-8069}:8069"
+      - "${ODOO_LONGPOLLING_PORT:-8072}:8072"
+    environment:
+      HOST: db
+      USER: ${DB_USER:-odoo}
+      PASSWORD: ${DB_PASSWORD:-odoo}
+    volumes:
+      - interntion_odoo_data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    networks:
+      - interntion_net
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: interntion_pgadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@interntion.co.uk}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      - interntion_pgadmin_data:/var/lib/pgadmin
+    networks:
+      - interntion_net
+    profiles:
+      - tools
+
+volumes:
+  interntion_db_data:
+  interntion_odoo_data:
+  interntion_pgadmin_data:
+
+networks:
+  interntion_net:
+    driver: bridge

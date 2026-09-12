@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_interntion_employer_user,interntion.employer.user,model_interntion_employer,group_interntion_user,1,1,1,0
+access_interntion_employer_manager,interntion.employer.manager,model_interntion_employer,group_interntion_manager,1,1,1,1
+access_interntion_mentor_user,interntion.mentor.user,model_interntion_mentor,group_interntion_user,1,1,1,0
+access_interntion_mentor_manager,interntion.mentor.manager,model_interntion_mentor,group_interntion_manager,1,1,1,1
+access_interntion_internship_user,interntion.internship.user,model_interntion_internship,group_interntion_user,1,1,1,0
+access_interntion_internship_manager,interntion.internship.manager,model_interntion_internship,group_interntion_manager,1,1,1,1
+access_interntion_project_user,interntion.project.user,model_interntion_project,group_interntion_user,1,1,1,0
+access_interntion_project_manager,interntion.project.manager,model_interntion_project,group_interntion_manager,1,1,1,1
+access_interntion_service_user,interntion.service.user,model_interntion_service,group_interntion_user,1,0,0,0
+access_interntion_service_manager,interntion.service.manager,model_interntion_service,group_interntion_manager,1,1,1,1
+access_interntion_testimonial_user,interntion.testimonial.user,model_interntion_testimonial,group_interntion_user,1,0,0,0
+access_interntion_testimonial_manager,interntion.testimonial.manager,model_interntion_testimonial,group_interntion_manager,1,1,1,1
+access_interntion_faq_user,interntion.faq.user,model_interntion_faq,group_interntion_user,1,0,0,0
+access_interntion_faq_manager,interntion.faq.manager,model_interntion_faq,group_interntion_manager,1,1,1,1
+access_interntion_dashboard_user,interntion.dashboard.user,model_interntion_dashboard,group_interntion_user,1,1,1,0
+access_interntion_dashboard_manager,interntion.dashboard.manager,model_interntion_dashboard,group_interntion_manager,1,1,1,1

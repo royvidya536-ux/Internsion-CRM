@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mentor_1" model="interntion.mentor">
+        <field name="name">Sophie Turner</field>
+        <field name="expertise">Tech &amp; Software Engineering Careers</field>
+        <field name="bio">Helps students prepare for software engineering internships with mock technical interviews and portfolio reviews.</field>
+    </record>
+    <record id="mentor_2" model="interntion.mentor">
+        <field name="name">James Whitfield</field>
+        <field name="expertise">Finance &amp; Consulting Careers</field>
+        <field name="bio">Ex-investment banking analyst guiding students through finance and consulting placements.</field>
+    </record>
+    <record id="mentor_3" model="interntion.mentor">
+        <field name="name">Aisha Rahman</field>
+        <field name="expertise">CV Writing &amp; ATS Optimisation</field>
+        <field name="bio">Specialist in ATS-optimised CV writing, LinkedIn branding and job application strategy.</field>
+    </record>
+    <record id="mentor_4" model="interntion.mentor">
+        <field name="name">Michael Osei</field>
+        <field name="expertise">Marketing &amp; Creative Careers</field>
+        <field name="bio">Supports students pursuing marketing, media and creative internship roles.</field>
+    </record>
+</odoo>
