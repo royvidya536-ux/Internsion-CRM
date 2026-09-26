@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_campaign_view_list" model="ir.ui.view">
+        <field name="name">utm.campaign.interntion.list</field>
+        <field name="model">utm.campaign</field>
+        <field name="arch" type="xml">
+            <list decoration-success="lifecycle == 'running'" decoration-muted="lifecycle == 'completed'">
+                <field name="name"/>
+                <field name="objective"/>
+                <field name="lifecycle" widget="badge"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="lead_count"/>
+                <field name="won_count"/>
+                <field name="conversion_rate" widget="percentage"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_campaign_view_form" model="ir.ui.view">
+        <field name="name">utm.campaign.interntion.form</field>
+        <field name="model">utm.campaign</field>
+        <field name="arch" type="xml">
+            <form string="Marketing Campaign">
+                <header>
+                    <button name="action_add_matched_leads" type="object" string="Match Leads" class="btn-secondary" invisible="not target_sector"/>
+                    <button name="action_send_campaign" type="object" string="Send Campaign" class="btn-primary" invisible="status == 'Sent'"/>
+                    <button name="action_set_running" type="object" string="Launch" class="btn-primary" invisible="lifecycle == 'running'"/>
+                    <button name="action_set_paused" type="object" string="Pause" invisible="lifecycle != 'running'"/>
+                    <button name="action_set_completed" type="object" string="Complete" invisible="lifecycle == 'completed'"/>
+                    <field name="lifecycle" widget="statusbar" statusbar_visible="planned,running,paused,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_campaign_leads" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="lead_count" widget="statinfo" string="Leads"/>
+                        </button>
+                        <button name="action_view_campaign_leads" type="object" class="oe_stat_button" icon="fa-trophy">
+                            <field name="won_count" widget="statinfo" string="Won"/>
+                        </button>
+                    </div>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Autumn Graduate Launch"/></h1></div>
+                    <group>
+                        <group string="Strategy">
+                            <field name="objective"/>
+                            <field name="campaign_type"/>
+                            <field name="market_id"/>
+                            <field name="target_sector"/>
+                            <field name="source_id"/>
+                            <field name="medium_id"/>
+                            <field name="landing_url" widget="url"/>
+                        </group>
+                        <group string="Planning">
+                            <field name="status" widget="badge"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="target_leads"/>
+                            <field name="budget"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Performance">
+                        <group><field name="qualified_count"/><field name="won_count"/><field name="conversion_rate" widget="percentage"/></group>
+                        <group><field name="cost_per_lead"/><field name="target_leads"/></group>
+                    </group>
+                    <notebook>
+                        <page string="Audience and channels">
+                            <group>
+                                <field name="target_lead_ids" widget="many2many_tags"/>
+                                <field name="channel_email"/>
+                                <field name="channel_whatsapp"/>
+                                <field name="channel_sms"/>
+                                <field name="channel_ai_voice_call"/>
+                            </group>
+                        </page>
+                        <page string="Campaign brief"><field name="notes" nolabel="1"/></page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_campaign_action" model="ir.actions.act_window">
+        <field name="name">Campaigns</field>
+        <field name="res_model">utm.campaign</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

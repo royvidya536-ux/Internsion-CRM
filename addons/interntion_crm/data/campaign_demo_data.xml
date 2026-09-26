@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="campaign_summer_intakes" model="utm.campaign">
+        <field name="name">Summer Internships 2026</field>
+        <field name="campaign_type">Broadcast</field>
+        <field name="market_id" ref="market_uk"/>
+        <field name="target_sector">technology</field>
+        <field name="channel_email">True</field>
+        <field name="channel_whatsapp">True</field>
+        <field name="status">Scheduled</field>
+        <field name="scheduled_at" eval="(DateTime.now() + relativedelta(days=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="message_email"><![CDATA[<p>Discover summer internship roles across top UK employers with flexible remote and hybrid opportunities.</p>]]></field>
+        <field name="message_whatsapp">Hello! We have a curated set of summer internship opportunities in tech and digital roles that match your profile.</field>
+    </record>
+    <record id="campaign_india_data_track" model="utm.campaign">
+        <field name="name">India Data &amp; AI Track</field>
+        <field name="campaign_type">List Push</field>
+        <field name="market_id" ref="market_in"/>
+        <field name="target_sector">data_science</field>
+        <field name="channel_sms">True</field>
+        <field name="channel_ai_voice_call">True</field>
+        <field name="status">Draft</field>
+        <field name="message_sms">Your data science internship shortlist is ready. Connect with Interntion today.</field>
+        <field name="voice_call_script">Hi, this is Interntion. We have a data science internship opportunity that matches your background. Would you like a quick overview?</field>
+    </record>
+</odoo>

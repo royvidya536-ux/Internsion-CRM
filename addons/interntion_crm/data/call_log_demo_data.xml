@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="call_log_1" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_1"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=3)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">12</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Student was very interested in the software internship and asked about project fit and company match.</field>
+        <field name="next_action">Send interview shortlist</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_2" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_2"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=8)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">8</field>
+        <field name="outcome">No Answer</field>
+        <field name="notes">No answer on first contact; student is likely in class. Recommend follow-up later in the evening.</field>
+        <field name="next_action">Retry in the evening</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_3" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_3"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=12)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">15</field>
+        <field name="outcome">Callback Requested</field>
+        <field name="notes">Parent requested a callback to discuss placement timelines and visa requirements.</field>
+        <field name="next_action">Call parent back</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_4" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_4"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">in</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=15)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">10</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Candidate asked for portfolio guidance and available project assistance options.</field>
+        <field name="next_action">Send project catalog</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_5" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_5"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=18)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">7</field>
+        <field name="outcome">Not Interested</field>
+        <field name="notes">Student was not interested after reviewing the stipend; said they would revisit later.</field>
+        <field name="next_action">Keep in nurture list</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=14)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_6" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_1"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=22)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">18</field>
+        <field name="outcome">Converted</field>
+        <field name="notes">Student agreed to proceed and asked for next steps for onboarding and mentor assignment.</field>
+        <field name="next_action">Start onboarding</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=4)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_7" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_2"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">6</field>
+        <field name="outcome">Voicemail</field>
+        <field name="notes">Voicemail left with summary of internship options and next steps to review the CV.</field>
+        <field name="next_action">Follow up by email</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_8" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_3"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">in</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=35)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">11</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Candidate enquired about remote work, live mentors, and application timeline.</field>
+        <field name="next_action">Send application checklist</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_9" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_4"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=41)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">9</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Student was happy with the available mentor guidance and requested a final application call.</field>
+        <field name="next_action">Book final application call</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=5)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_10" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_5"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=48)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">5</field>
+        <field name="outcome">No Answer</field>
+        <field name="notes">No response after calling from the website enquiry.</field>
+        <field name="next_action">Send follow-up email</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_11" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_1"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">20</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Discussed internship options and confirmed the preferred sector and mentoring support needed.</field>
+        <field name="next_action">Prepare final recommendation</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_12" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_2"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">in</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=26)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">13</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Student was excited about the available tech roles and asked for complete placement details.</field>
+        <field name="next_action">Share role details</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_13" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_3"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">14</field>
+        <field name="outcome">Callback Requested</field>
+        <field name="notes">Parent wanted to talk through compensation and compliance and not ready to commit immediately.</field>
+        <field name="next_action">Schedule callback on Friday</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=6)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_14" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_4"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=41)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">16</field>
+        <field name="outcome">Converted</field>
+        <field name="notes">Confirmed role interest and accepted the onboarding link.</field>
+        <field name="next_action">Complete profile setup</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_15" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_5"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=52)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">9</field>
+        <field name="outcome">Voicemail</field>
+        <field name="notes">Left a voicemail and asked the student to return the call about next steps.</field>
+        <field name="next_action">Send reminder</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=4)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_16" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_1"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=60)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">11</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">The student was positive about the available internship sectors and requested more information on project work.</field>
+        <field name="next_action">Share sector overview</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_17" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_2"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=54)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">7</field>
+        <field name="outcome">No Answer</field>
+        <field name="notes">Second attempt no answer; likely offline.</field>
+        <field name="next_action">Try later in day</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_18" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_3"/>
+        <field name="mentor_id" ref="mentor_3"/>
+        <field name="call_direction">in</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=27)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">18</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Candidate requested more information on remote support and mentor availability.</field>
+        <field name="next_action">Share mentor list</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_19" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_4"/>
+        <field name="mentor_id" ref="mentor_1"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=46)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">12</field>
+        <field name="outcome">Connected</field>
+        <field name="notes">Candidate asked for follow-up on their application timeline and accepted the next steps.</field>
+        <field name="next_action">Send timeline email</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=3)).strftime('%Y-%m-%d')"/>
+    </record>
+    <record id="call_log_20" model="interntion.call.log">
+        <field name="lead_id" ref="interntion_crm.lead_5"/>
+        <field name="mentor_id" ref="mentor_2"/>
+        <field name="call_direction">out</field>
+        <field name="call_datetime" eval="(DateTime.now() - relativedelta(days=34)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="duration_minutes">10</field>
+        <field name="outcome">Not Interested</field>
+        <field name="notes">Student was not convinced by the program fit and asked to be removed from follow-up.</field>
+        <field name="next_action">Stop outreach</field>
+        <field name="next_action_date" eval="(DateTime.now() + relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+    </record>
+</odoo>

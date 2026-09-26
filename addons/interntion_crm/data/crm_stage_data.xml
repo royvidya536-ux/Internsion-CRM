@@ -1,52 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="crm_team_interntion" model="crm.team">
-        <field name="name">Interntion - Internship Placements</field>
+            <field name="name">Student Placements</field>
         <field name="use_opportunities">True</field>
     </record>
 
     <record id="stage_new_application" model="crm.stage">
         <field name="name">New Application</field>
         <field name="sequence">1</field>
-        <field name="team_id" ref="crm_team_interntion"/>
     </record>
 
     <record id="stage_cv_screening" model="crm.stage">
-        <field name="name">CV Screening</field>
+            <field name="name">CV/Profile Review</field>
         <field name="sequence">2</field>
-        <field name="team_id" ref="crm_team_interntion"/>
     </record>
 
     <record id="stage_matched_employer" model="crm.stage">
-        <field name="name">Matched with Employer</field>
+            <field name="name">Matched to Partner</field>
         <field name="sequence">3</field>
-        <field name="team_id" ref="crm_team_interntion"/>
     </record>
 
     <record id="stage_interview" model="crm.stage">
         <field name="name">Interview Scheduled</field>
-        <field name="sequence">4</field>
-        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="sequence">5</field>
     </record>
 
     <record id="stage_offer_extended" model="crm.stage">
         <field name="name">Offer Extended</field>
-        <field name="sequence">5</field>
-        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="sequence">6</field>
     </record>
 
     <record id="stage_placed" model="crm.stage">
-        <field name="name">Placed</field>
-        <field name="sequence">6</field>
-        <field name="is_won">True</field>
-        <field name="fold">True</field>
-        <field name="team_id" ref="crm_team_interntion"/>
+            <field name="name">Placement Active</field>
+        <field name="sequence">7</field>
+        <field name="is_won">False</field>
+        <field name="fold">False</field>
     </record>
 
     <record id="stage_rejected" model="crm.stage">
-        <field name="name">Rejected</field>
-        <field name="sequence">7</field>
+            <field name="name">Not Progressing</field>
+        <field name="sequence">9</field>
         <field name="fold">True</field>
-        <field name="team_id" ref="crm_team_interntion"/>
     </record>
+        <record id="stage_interview_prep" model="crm.stage"><field name="name">CV &amp; Interview Prep</field><field name="sequence">4</field></record>
+        <record id="stage_completed" model="crm.stage"><field name="name">Placement Completed</field><field name="sequence">8</field><field name="is_won">True</field><field name="fold">True</field></record>
+        <record id="partner_stage_new" model="crm.stage"><field name="name">New Enquiry</field><field name="sequence">1</field></record>
+        <record id="partner_stage_call" model="crm.stage"><field name="name">Qualification Call</field><field name="sequence">2</field></record>
+        <record id="partner_stage_brief" model="crm.stage"><field name="name">Needs/Brief Confirmed</field><field name="sequence">3</field></record>
+        <record id="partner_stage_shortlist" model="crm.stage"><field name="name">Candidate Shortlist Sent</field><field name="sequence">4</field></record>
+        <record id="partner_stage_contract" model="crm.stage"><field name="name">Agreement/Contract</field><field name="sequence">5</field></record>
+        <record id="partner_stage_active" model="crm.stage"><field name="name">Active Partner</field><field name="sequence">6</field><field name="is_won">True</field><field name="fold">True</field></record>
+        <record id="partner_stage_lost" model="crm.stage"><field name="name">Not a Fit</field><field name="sequence">7</field><field name="fold">True</field></record>
 </odoo>

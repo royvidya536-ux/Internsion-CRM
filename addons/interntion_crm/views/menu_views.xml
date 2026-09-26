@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_interntion_root" name="Interntion CRM" sequence="5"/>
-
-    <menuitem id="menu_interntion_dashboard" name="Dashboard" parent="menu_interntion_root" sequence="1"
-              action="interntion_dashboard_action_server"/>
-
-    <menuitem id="menu_interntion_pipeline" name="Applications" parent="menu_interntion_root" sequence="2"/>
-    <menuitem id="menu_interntion_pipeline_kanban" name="Pipeline" parent="menu_interntion_pipeline" sequence="1"
+    <menuitem id="menu_interntion_pipeline_kanban" name="Placement Pipeline" parent="menu_interntion_pipeline" sequence="1"
               action="crm_lead_action_interntion_pipeline"/>
+    <menuitem id="menu_interntion_partner_pipeline" name="Partner Pipeline" parent="menu_interntion_pipeline" sequence="2"
+              action="crm_lead_action_partner_pipeline"/>
+    <menuitem id="menu_interntion_lead_generation" name="Generate Leads" parent="menu_interntion_pipeline" sequence="3"
+              action="interntion_lead_generation_action"/>
+    <menuitem id="menu_interntion_ai_calling" name="AI Calling" parent="menu_interntion_pipeline" sequence="4"
+              action="interntion_ai_agent_action" groups="interntion_crm.group_interntion_manager"/>
+    <menuitem id="menu_interntion_campaigns" name="Campaigns" parent="menu_interntion_root" sequence="2"
+              action="interntion_campaign_action"/>
+    <menuitem id="menu_interntion_lead_matches" name="Lead Matches" parent="menu_interntion_root" sequence="3"
+              action="interntion_lead_match_action"/>
+    <menuitem id="menu_interntion_call_tracking" name="Call Tracking" parent="menu_interntion_root" sequence="3"
+              action="interntion_call_log_action"/>
+    <menuitem id="menu_interntion_markets" name="Markets" parent="menu_interntion_root" sequence="4"
+              action="interntion_market_action"/>
 
-    <menuitem id="menu_interntion_catalogue" name="Catalogue" parent="menu_interntion_root" sequence="3"/>
     <menuitem id="menu_interntion_internship" name="Internship Opportunities" parent="menu_interntion_catalogue" sequence="1"
               action="interntion_internship_action"/>
     <menuitem id="menu_interntion_project" name="Project Assistance" parent="menu_interntion_catalogue" sequence="2"
               action="interntion_project_action"/>
+    <menuitem id="menu_interntion_service" name="Core Services" parent="menu_interntion_catalogue" sequence="3"
+              action="interntion_service_action"/>
 
-    <menuitem id="menu_interntion_network" name="Network" parent="menu_interntion_root" sequence="4"/>
     <menuitem id="menu_interntion_employer" name="Industry Partners" parent="menu_interntion_network" sequence="1"
               action="interntion_employer_action"/>
     <menuitem id="menu_interntion_mentor" name="Mentors" parent="menu_interntion_network" sequence="2"
               action="interntion_mentor_action"/>
 
-    <menuitem id="menu_interntion_content" name="Website Content" parent="menu_interntion_root" sequence="5"/>
     <menuitem id="menu_interntion_testimonial" name="Testimonials" parent="menu_interntion_content" sequence="1"
               action="interntion_testimonial_action"/>
     <menuitem id="menu_interntion_faq" name="FAQ" parent="menu_interntion_content" sequence="2"
               action="interntion_faq_action"/>
-    <menuitem id="menu_interntion_service" name="Our Services" parent="menu_interntion_content" sequence="3"
-              action="interntion_service_action"/>
 </odoo>

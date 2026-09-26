@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_ai_agent_view_list" model="ir.ui.view">
+        <field name="name">interntion.ai.agent.list</field>
+        <field name="model">interntion.ai.agent</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="provider"/>
+                <field name="endpoint"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="interntion_ai_agent_view_form" model="ir.ui.view">
+        <field name="name">interntion.ai.agent.form</field>
+        <field name="model">interntion.ai.agent</field>
+        <field name="arch" type="xml">
+            <form string="AI Calling Agent">
+                <sheet>
+                    <div class="alert alert-warning" role="alert">
+                        The provider receives lead name, phone, email and placement side. Obtain consent and verify local calling laws before enabling outbound calls.
+                    </div>
+                    <group>
+                        <field name="name"/>
+                        <field name="provider"/>
+                        <field name="active"/>
+                        <field name="default_language"/>
+                    </group>
+                    <group string="Connection">
+                        <field name="endpoint" placeholder="https://your-provider.example/calls"/>
+                        <field name="api_key" password="True"/>
+                        <field name="webhook_secret" password="True"/>
+                    </group>
+                    <footer>
+                        <button name="action_test_connection" type="object" string="Test Connection" class="btn-primary"/>
+                        <button string="Close" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="interntion_ai_agent_action" model="ir.actions.act_window">
+        <field name="name">AI Calling</field>
+        <field name="res_model">interntion.ai.agent</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

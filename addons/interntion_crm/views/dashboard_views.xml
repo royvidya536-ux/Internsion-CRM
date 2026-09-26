@@ -4,35 +4,225 @@
         <field name="name">interntion.dashboard.form</field>
         <field name="model">interntion.dashboard</field>
         <field name="arch" type="xml">
-            <form string="Interntion Overview" create="false" edit="false" delete="false">
-                <sheet>
-                    <h1 class="mb-4">Interntion CRM — Live Overview</h1>
-                    <div class="o_horizontal_separator"/>
-                    <div class="row">
-                        <div class="col-4">
-                            <button type="object" name="action_view_placed" class="oe_stat_button" icon="fa-graduation-cap" style="width:100%">
-                                <field name="students_placed" widget="statinfo" string="Students Placed"/>
+            <form string="Interntion Overview" create="false" edit="false" delete="false" class="o_interntion_dashboard">
+                <sheet class="o_interntion_sheet">
+                    <div style="background:linear-gradient(120deg,#2d1b4e,#4d2d82 42%,#6a5bd6);color:#ffffff;padding:22px 24px;margin:-16px -16px 18px -16px;border-radius:0 0 18px 18px;box-shadow:0 18px 36px rgba(61,41,120,.18);">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+                                <h1 style="color:#ffffff;font-size:24px;margin:0 0 6px 0;">Interntion CRM</h1>
+                                <small style="opacity:.82;letter-spacing:.3px;">Real internship placement intelligence for a high-growth student support business.</small>
+                            </div>
+                            <div class="col-lg-5 text-end" style="padding-top:6px;">
+                                <button type="object" name="action_view_student_pipeline" class="btn btn-light" string="Student Pipeline" style="margin-left:8px;"/>
+                                <button type="action" name="%(interntion_lead_generation_action)d" class="btn btn-light" string="Generate Leads" style="margin-left:8px;"/>
+                                <button type="object" name="action_view_partners" class="btn btn-outline-light" string="Partners" style="margin-left:8px;"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mb-3">
+                        <div class="col-lg-8">
+                            <h2 style="font-size:27px;margin:0 0 3px 0;">Interntion Overview</h2>
+                            <span class="text-muted">Executive snapshot of student growth, placement health and partner performance.</span>
+                        </div>
+                        <div class="col-lg-4 text-end">
+                            <button type="object" name="action_view_student_pipeline" class="btn btn-primary" string="Open Full Pipeline"/>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-xl-3 col-md-6">
+                            <button type="object" name="action_view_total_applications" style="width:100%;text-align:left;border:1px solid #efe9ff;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#faf8ff);min-height:130px;box-shadow:0 10px 24px rgba(92,74,153,.04);">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">TOTAL APPLICATIONS</small>
+                                    <span class="badge text-bg-light">Live</span>
+                                </div>
+                                <h2 style="color:#35265f;font-size:32px;margin:8px 0 0 0;"><field name="total_applications"/></h2>
+                                <small class="text-muted">student opportunities</small>
                             </button>
                         </div>
-                        <div class="col-4">
-                            <field name="success_rate" widget="percentage" string="Success Rate"/>
+                        <div class="col-xl-3 col-md-6">
+                            <button type="object" name="action_view_placed" style="width:100%;text-align:left;border:1px solid #e4f7ee;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#f2fff8);min-height:130px;box-shadow:0 10px 24px rgba(27,112,76,.04);">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">STUDENTS PLACED</small>
+                                    <span class="badge text-bg-success">+ placements</span>
+                                </div>
+                                <h2 style="color:#2d8a62;font-size:32px;margin:8px 0 0 0;"><field name="students_placed"/></h2>
+                                <small class="text-muted">successful placements</small>
+                            </button>
                         </div>
-                        <div class="col-4">
-                            <button type="object" name="action_view_partners" class="oe_stat_button" icon="fa-handshake-o" style="width:100%">
-                                <field name="industry_partners" widget="statinfo" string="Industry Partners"/>
+                        <div class="col-xl-3 col-md-6">
+                            <button type="object" name="action_view_total_applications" style="width:100%;text-align:left;border:1px solid #e8f1ff;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#f7faff);min-height:130px;box-shadow:0 10px 24px rgba(52,121,201,.04);">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">SUCCESS RATE</small>
+                                    <span class="badge text-bg-primary">Conversion</span>
+                                </div>
+                                <h2 style="color:#3479c9;font-size:32px;margin:8px 0 0 0;"><field name="success_rate"/>%</h2>
+                                <small class="text-muted">applications to placement</small>
+                            </button>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <button type="object" name="action_view_partners" style="width:100%;text-align:left;border:1px solid #f3ebff;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#faf6ff);min-height:130px;box-shadow:0 10px 24px rgba(95,75,149,.04);">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">INDUSTRY PARTNERS</small>
+                                    <span class="badge text-bg-light">Network</span>
+                                </div>
+                                <h2 style="color:#5f4b95;font-size:32px;margin:8px 0 0 0;"><field name="industry_partners"/></h2>
+                                <small class="text-muted">active employer network</small>
+                            </button>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <button type="object" name="action_view_total_applications" style="width:100%;text-align:left;border:1px solid #f3e9ff;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#fcf9ff);min-height:130px;box-shadow:0 10px 24px rgba(105, 72, 170, .04);">
+                                <div class="d-flex justify-content-between align-items-center"><small class="text-muted">CALLS MADE THIS WEEK</small><span class="badge text-bg-light">Calls</span></div>
+                                <h2 style="color:#5f4b95;font-size:30px;margin:8px 0 0 0;"><field name="calls_made_this_week"/></h2>
+                                <small class="text-muted">outbound follow-ups</small>
+                            </button>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <button type="object" name="action_view_total_applications" style="width:100%;text-align:left;border:1px solid #e8f6ef;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#f3fff9);min-height:130px;box-shadow:0 10px 24px rgba(27,112,76,.04);">
+                                <div class="d-flex justify-content-between align-items-center"><small class="text-muted">CONNECT RATE %</small><span class="badge text-bg-success">Funnel</span></div>
+                                <h2 style="color:#2d8a62;font-size:30px;margin:8px 0 0 0;"><field name="connect_rate"/>%</h2>
+                                <small class="text-muted">successfully connected</small>
+                            </button>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <button type="object" name="action_view_total_applications" style="width:100%;text-align:left;border:1px solid #eef7ff;border-radius:14px;padding:18px;background:linear-gradient(180deg,#ffffff,#f4f9ff);min-height:130px;box-shadow:0 10px 24px rgba(52,121,201,.04);">
+                                <div class="d-flex justify-content-between align-items-center"><small class="text-muted">AVG. TIME TO FIRST CALL</small><span class="badge text-bg-primary">Ops</span></div>
+                                <h2 style="color:#3479c9;font-size:30px;margin:8px 0 0 0;"><field name="avg_time_to_first_call"/>h</h2>
+                                <small class="text-muted">from lead creation</small>
                             </button>
                         </div>
                     </div>
-                    <group>
-                        <group string="Pipeline">
-                            <field name="total_applications"/>
-                            <button type="object" name="action_view_internships" class="oe_link" string="View Open Internships"/>
-                            <field name="open_internships"/>
-                        </group>
-                        <group string="Team">
-                            <field name="active_mentors"/>
-                        </group>
-                    </group>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-xl-5">
+                            <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:280px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h3 style="font-size:18px;margin:0;">Application funnel</h3>
+                                    <button type="object" name="action_view_placement_pipeline" class="btn btn-link p-0" style="font-size:12px;">Open full pipeline</button>
+                                </div>
+                                <button type="object" name="action_view_new_applications" style="width:100%;text-align:left;border:0;background:transparent;padding:0;margin:0;">
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between"><span>New applications</span><strong><field name="new_applications"/></strong></div>
+                                        <div class="progress mt-1" style="height:7px;"><div class="progress-bar bg-primary" style="width:100%;"/></div>
+                                    </div>
+                                </button>
+                                <button type="object" name="action_view_cv_screening" style="width:100%;text-align:left;border:0;background:transparent;padding:0;margin:0;">
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between"><span>CV screening</span><strong><field name="cv_screening"/></strong></div>
+                                        <div class="progress mt-1" style="height:7px;"><div class="progress-bar bg-info" style="width:72%;"/></div>
+                                    </div>
+                                </button>
+                                <button type="object" name="action_view_interviews" style="width:100%;text-align:left;border:0;background:transparent;padding:0;margin:0;">
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between"><span>Interviews</span><strong><field name="interviews"/></strong></div>
+                                        <div class="progress mt-1" style="height:7px;"><div class="progress-bar bg-warning" style="width:58%;"/></div>
+                                    </div>
+                                </button>
+                                <button type="object" name="action_view_offers" style="width:100%;text-align:left;border:0;background:transparent;padding:0;margin:0;">
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between"><span>Offers open</span><strong><field name="offers_open"/></strong></div>
+                                        <div class="progress mt-1" style="height:7px;"><div class="progress-bar bg-success" style="width:42%;"/></div>
+                                    </div>
+                                </button>
+                                <button type="object" name="action_view_placed" style="width:100%;text-align:left;border:0;background:transparent;padding:0;margin:0;">
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between"><span>Placed</span><strong><field name="placed_applications"/></strong></div>
+                                        <div class="progress mt-1" style="height:7px;"><div class="progress-bar bg-success" style="width:36%;"/></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3">
+                            <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:280px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                <h3 style="font-size:18px;margin:0 0 10px 0;">Growth health</h3>
+                                <button type="object" name="action_view_open_internships" style="width:100%;text-align:left;border:0;background:transparent;padding:0;">
+                                    <div class="mb-3">
+                                        <small class="text-muted">Open internships</small>
+                                        <h3 style="margin:6px 0 0 0;"><field name="open_internships"/></h3>
+                                    </div>
+                                </button>
+                                <button type="object" name="action_view_active_mentors" style="width:100%;text-align:left;border:0;background:transparent;padding:0;">
+                                    <div class="mb-3">
+                                        <small class="text-muted">Active mentors</small>
+                                        <h3 style="margin:6px 0 0 0;"><field name="active_mentors"/></h3>
+                                    </div>
+                                </button>
+                                <div class="mb-3">
+                                    <small class="text-muted">At-risk cases</small>
+                                    <h3 style="margin:6px 0 0 0;color:#c2574a;"><field name="at_risk_count"/></h3>
+                                </div>
+                                <div>
+                                    <small class="text-muted">Student match SLA</small>
+                                    <h3 style="margin:6px 0 0 0;"><field name="student_match_sla_rate"/>%</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:280px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                <h3 style="font-size:18px;margin:0 0 10px 0;">Operating snapshot</h3>
+                                <div class="mt-3" style="border-bottom:1px solid #f3f0fa;padding-bottom:10px;">
+                                    <span class="text-muted">Industries covered</span>
+                                    <strong class="float-end"><field name="industries_covered"/></strong>
+                                </div>
+                                <div class="mt-3" style="border-bottom:1px solid #f3f0fa;padding-bottom:10px;">
+                                    <span class="text-muted">Countries active</span>
+                                    <strong class="float-end"><field name="countries_active"/></strong>
+                                </div>
+                                <div class="mt-3" style="border-bottom:1px solid #f3f0fa;padding-bottom:10px;">
+                                    <span class="text-muted">Partner SLA</span>
+                                    <strong class="float-end"><field name="partnership_sla_rate"/>%</strong>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="text-muted">Add-on revenue</span>
+                                    <strong class="float-end"><field name="addon_revenue_month"/></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-xl-6">
+                            <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:170px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                <h3 style="font-size:18px;margin:0 0 10px 0;">Priority actions</h3>
+                                <div class="mt-3 d-flex justify-content-between"><span>Applications needing review</span><strong><field name="new_applications"/></strong></div>
+                                <div class="mt-3 d-flex justify-content-between"><span>Offers waiting for decision</span><strong><field name="offers_open"/></strong></div>
+                                <div class="mt-3 d-flex justify-content-between"><span>Mentors available</span><strong><field name="active_mentors"/></strong></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                                <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:170px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <h3 style="font-size:18px;margin:0;">Help &amp; support</h3>
+                                            <small class="text-muted">Placement requests and escalations</small>
+                                        </div>
+                                        <button type="object" name="action_create_support_request" class="btn btn-primary" string="Request Help"/>
+                                    </div>
+                                    <button type="object" name="action_view_support_queue" style="width:100%;text-align:left;border:0;background:transparent;padding:0;">
+                                        <div class="mt-3 d-flex justify-content-between align-items-center" style="border-bottom:1px solid #f3f0fa;padding-bottom:10px;">
+                                            <span>Open support requests</span>
+                                            <strong><field name="open_support_tickets"/></strong>
+                                        </div>
+                                        <div class="mt-3 d-flex justify-content-between align-items-center">
+                                            <span>Urgent requests</span>
+                                            <strong style="color:#c2574a;"><field name="urgent_support_tickets"/></strong>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                            <div style="border:1px solid #ece7f6;border-radius:16px;padding:18px;background:#ffffff;min-height:170px;box-shadow:0 12px 24px rgba(53,39,93,.03);">
+                                <h3 style="font-size:18px;margin:0 0 10px 0;">Core services</h3>
+                                <div class="mt-3 d-flex justify-content-between"><span>Internship opportunities</span><span class="badge text-bg-primary">Live</span></div>
+                                <div class="mt-3 d-flex justify-content-between"><span>Project assistance</span><span class="badge text-bg-info">150+ projects</span></div>
+                                <div class="mt-3 d-flex justify-content-between"><span>Work experience support</span><span class="badge text-bg-success">Mentor-led</span></div>
+                                <div class="mt-3 d-flex justify-content-between"><span>CV &amp; job prep</span><span class="badge text-bg-warning">ATS ready</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </sheet>
             </form>
         </field>
@@ -51,4 +241,7 @@
         <field name="state">code</field>
         <field name="code">action = model.get_or_create_singleton().get_formview_action()</field>
     </record>
+
+    <menuitem id="menu_interntion_dashboard" name="Dashboard" parent="menu_interntion_root" sequence="1"
+              action="interntion_dashboard_action_server"/>
 </odoo>

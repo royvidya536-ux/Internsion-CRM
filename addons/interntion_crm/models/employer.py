@@ -36,6 +36,10 @@ class InterntionEmployer(models.Model):
 
     name = fields.Char(required=True, tracking=True)
     sector = fields.Selection(SECTOR_SELECTION, string="Sector", required=True, tracking=True)
+    partner_country = fields.Selection([
+        ("uk", "UK"), ("india", "India"), ("uae", "UAE"), ("usa", "USA"), ("other", "Other"),
+    ], string="Partner Country", tracking=True)
+    account_manager_id = fields.Many2one("res.users", string="Account Manager", tracking=True)
     website = fields.Char()
     logo = fields.Binary(attachment=True)
     contact_name = fields.Char(string="Contact Person")

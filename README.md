@@ -1,6 +1,6 @@
 # Interntion CRM
 
-A complete, self-contained **Odoo 17** CRM built for **Interntion** — the UK
+A complete, self-contained **Odoo 19** CRM built for **Interntion** — the UK
 EduTech platform that places students into real, paid internships across
 20+ industries (content modelled from [interntion.co.uk](https://interntion.co.uk/index.html)).
 
@@ -8,6 +8,10 @@ Everything required to run this project — the Odoo application, the
 PostgreSQL database, the custom `interntion_crm` addon and the container
 definitions — lives inside this **single folder** and is orchestrated with
 Docker Compose. No manual Odoo/Postgres installation is required.
+
+The Docker stack targets **Odoo 19**. The development database is named
+`interntion_crm_19`; this keeps it separate from any older Odoo database in the
+same PostgreSQL volume.
 
 ## What's inside
 
@@ -37,6 +41,7 @@ interntion-crm/
 | Work Experience Support (mentorship) | `Mentors` directory linked to each application |
 | CV & Job Preparation | CV upload + "CV Reviewed" / "Mock Interview Done" / "Certificate Issued" tracking fields on every application |
 | Industry Partners | `Industry Partners` (Employers) directory with sector, contact info, linked internships & applications |
+| Campaign attribution | Native Odoo UTM campaigns with source/medium, launch lifecycle, lead/won metrics, budget, conversion rate and campaign-linked lead generation |
 | Student Stories / Testimonials | `Testimonials` records (Arjun Sharma, Priya Nair, Daniel Osei, etc.) |
 | FAQ section | `FAQ` knowledge base (all 10 questions from the site) |
 | "Apply Now" form (Name, Email, Phone, Course, CV upload) | New CRM Lead/Opportunity form (`x_course_stream`, `x_cv_file`, standard `partner_name`/`email_from`/`phone`) |
@@ -102,7 +107,7 @@ From this folder:
 ```powershell
 git init
 git add .
-git commit -m "Initial commit: Interntion CRM (Odoo 17 + Docker)"
+git commit -m "Initial commit: Interntion CRM (Odoo 19 + Docker)"
 ```
 
 Then push to your remote of choice (GitHub, GitLab, Azure DevOps, etc.):

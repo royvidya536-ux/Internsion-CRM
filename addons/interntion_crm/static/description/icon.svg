@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Interntion CRM">
+  <rect width="256" height="256" rx="48" fill="#102a43"/>
+  <path d="M54 72h148v24H54zM54 116h94v24H54zM54 160h148v24H54z" fill="#f6c85f"/>
+  <circle cx="180" cy="128" r="28" fill="#2bb3a3"/>
+  <path d="M169 128l8 8 15-17" fill="none" stroke="#102a43" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+</svg>

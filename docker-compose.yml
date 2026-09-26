@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   db:
     image: postgres:15
@@ -13,7 +11,7 @@ services:
     volumes:
       - interntion_db_data:/var/lib/postgresql/data/pgdata
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-odoo}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-odoo} -d postgres"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -24,6 +22,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: interntion-odoo:19.0
     container_name: interntion_odoo
     restart: unless-stopped
     depends_on:

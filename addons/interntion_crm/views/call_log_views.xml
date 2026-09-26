@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_call_log_view_tree" model="ir.ui.view">
+        <field name="name">interntion.call.log.tree</field>
+        <field name="model">interntion.call.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="lead_id"/>
+                <field name="mentor_id"/>
+                <field name="call_direction"/>
+                <field name="call_datetime"/>
+                <field name="duration_minutes"/>
+                <field name="outcome"/>
+                <field name="call_status"/>
+                <field name="language"/>
+                <field name="intent"/>
+                <field name="next_action"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="interntion_call_log_view_form" model="ir.ui.view">
+        <field name="name">interntion.call.log.form</field>
+        <field name="model">interntion.call.log</field>
+        <field name="arch" type="xml">
+            <form string="Call Log">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="lead_id"/>
+                            <field name="mentor_id"/>
+                            <field name="call_direction"/>
+                            <field name="call_datetime"/>
+                            <field name="duration_minutes"/>
+                        </group>
+                        <group>
+                            <field name="outcome"/>
+                            <field name="call_status"/>
+                            <field name="language"/>
+                            <field name="intent"/>
+                            <field name="next_action"/>
+                            <field name="next_action_date"/>
+                            <field name="recording_url" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                        <page string="AI Insights">
+                            <group>
+                                <field name="ai_summary"/>
+                                <field name="ai_sentiment"/>
+                                <field name="ai_next_step_suggestion"/>
+                            </group>
+                        </page>
+                        <page string="Voice Record">
+                            <group>
+                                <field name="provider_call_id"/>
+                                <field name="consent_captured"/>
+                                <field name="callback_requested"/>
+                                <field name="ai_confidence" widget="percentage"/>
+                                <field name="transcript"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_call_log_wizard_form" model="ir.ui.view">
+        <field name="name">interntion.call.log.wizard.form</field>
+        <field name="model">interntion.call.log.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Log Call">
+                <group>
+                    <field name="lead_id"/>
+                    <field name="mentor_id"/>
+                    <field name="call_direction"/>
+                    <field name="call_datetime"/>
+                    <field name="duration_minutes"/>
+                    <field name="outcome"/>
+                    <field name="next_action"/>
+                    <field name="next_action_date"/>
+                    <field name="recording_url" widget="url"/>
+                    <field name="notes"/>
+                </group>
+                <footer>
+                    <button string="Save" type="object" name="action_save" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_call_log_action" model="ir.actions.act_window">
+        <field name="name">Call Logs</field>
+        <field name="res_model">interntion.call.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="lead_1" model="crm.lead">
+        <field name="name">Software Engineering Internship - Aanya Patel</field>
+        <field name="type">opportunity</field>
+        <field name="partner_name">Aanya Patel</field>
+        <field name="email_from">aanya.patel@example.com</field>
+        <field name="phone">+44 7700 900101</field>
+        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="stage_id" ref="stage_cv_screening"/>
+        <field name="x_course_stream">B.Tech Computer Science</field>
+        <field name="x_industry_sector">technology</field>
+        <field name="x_application_source">website</field>
+        <field name="x_internship_id" ref="internship_1"/>
+        <field name="x_mentor_id" ref="mentor_1"/>
+        <field name="expected_revenue">1200</field>
+    </record>
+    <record id="lead_2" model="crm.lead">
+        <field name="name">Finance Analyst Internship - Liam Carter</field>
+        <field name="type">opportunity</field>
+        <field name="partner_name">Liam Carter</field>
+        <field name="email_from">liam.carter@example.com</field>
+        <field name="phone">+44 7700 900102</field>
+        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="stage_id" ref="stage_new_application"/>
+        <field name="x_course_stream">BSc Economics and Finance</field>
+        <field name="x_industry_sector">finance</field>
+        <field name="x_application_source">partner_university</field>
+        <field name="x_internship_id" ref="internship_2"/>
+        <field name="x_mentor_id" ref="mentor_2"/>
+        <field name="expected_revenue">1400</field>
+    </record>
+    <record id="lead_3" model="crm.lead">
+        <field name="name">Data Science Placement - Meera Shah</field>
+        <field name="type">opportunity</field>
+        <field name="partner_name">Meera Shah</field>
+        <field name="email_from">meera.shah@example.com</field>
+        <field name="phone">+44 7700 900103</field>
+        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="stage_id" ref="stage_matched_employer"/>
+        <field name="x_course_stream">MSc Data Science</field>
+        <field name="x_industry_sector">data_science</field>
+        <field name="x_application_source">referral</field>
+        <field name="x_internship_id" ref="internship_5"/>
+        <field name="x_mentor_id" ref="mentor_3"/>
+        <field name="expected_revenue">1500</field>
+    </record>
+    <record id="lead_4" model="crm.lead">
+        <field name="name">Digital Marketing Internship - Noah Williams</field>
+        <field name="type">opportunity</field>
+        <field name="partner_name">Noah Williams</field>
+        <field name="email_from">noah.williams@example.com</field>
+        <field name="phone">+44 7700 900104</field>
+        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="stage_id" ref="stage_interview"/>
+        <field name="x_course_stream">BA Marketing and Communications</field>
+        <field name="x_industry_sector">marketing</field>
+        <field name="x_application_source">social_media</field>
+        <field name="x_internship_id" ref="internship_3"/>
+        <field name="x_mentor_id" ref="mentor_4"/>
+        <field name="expected_revenue">1000</field>
+    </record>
+    <record id="lead_5" model="crm.lead">
+        <field name="name">Healthcare Operations Internship - Sofia Mensah</field>
+        <field name="type">opportunity</field>
+        <field name="partner_name">Sofia Mensah</field>
+        <field name="email_from">sofia.mensah@example.com</field>
+        <field name="phone">+44 7700 900105</field>
+        <field name="team_id" ref="crm_team_interntion"/>
+        <field name="stage_id" ref="stage_new_application"/>
+        <field name="x_course_stream">BSc Healthcare Management</field>
+        <field name="x_industry_sector">healthcare</field>
+        <field name="x_application_source">career_fair</field>
+        <field name="x_internship_id" ref="internship_4"/>
+        <field name="x_mentor_id" ref="mentor_4"/>
+        <field name="expected_revenue">1100</field>
+    </record>
+</odoo>

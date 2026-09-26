@@ -1,58 +1,48 @@
 {
     "name": "Interntion CRM",
-    "version": "17.0.1.0.0",
+    "version": "19.0.2",
     "category": "Sales/CRM",
     "summary": "Full CRM for Interntion - UK Paid Internship Placement Platform",
-    "description": """
-Interntion CRM
-==============
-A complete Odoo CRM built for Interntion, the UK EduTech platform that places
-students into real, paid internships across 20+ industries.
-
-Features
---------
-* Internship Placement pipeline (CRM leads/opportunities) with dedicated stages:
-  New Application -> CV Screening -> Matched with Employer -> Interview ->
-  Offer Extended -> Placed / Rejected.
-* Industry Partners (Employers) directory with sector, logo and partnership date.
-* Internship Opportunities catalogue across 20+ sectors, paid/unpaid, stipend.
-* Project Assistance catalogue (AI/ML/Data Science ready-to-submit projects).
-* Mentors directory with expertise and assigned students.
-* Our 4 core services showcase (Internship Opportunities, Project Assistance,
-  Work Experience Support, CV & Job Preparation).
-* Student testimonials / success stories.
-* FAQ knowledge base.
-* Interntion Dashboard with live KPIs: Students Placed, Success Rate,
-  Industry Partners - matching the public website statistics, computed from
-  real CRM data.
-""",
+        "description": "Complete Odoo CRM for Interntion's UK paid internship placement platform. Includes applications pipeline, employers, internship opportunities, project assistance, mentors, services, testimonials, FAQs and live KPIs.",
     "author": "Interntion",
     "website": "https://interntion.co.uk",
     "license": "LGPL-3",
-    "depends": ["base", "mail", "crm", "contacts", "board"],
+    "depends": ["base", "mail", "crm", "contacts", "board", "utm", "sale_management", "product"],
     "data": [
         "security/interntion_security.xml",
         "security/ir.model.access.csv",
+        "data/reference_data.xml",
         "data/crm_stage_data.xml",
         "data/service_data.xml",
         "data/employer_data.xml",
         "data/mentor_data.xml",
         "data/internship_data.xml",
         "data/project_data.xml",
+        "data/market_data.xml",
+        "data/lead_demo_data.xml",
+        "data/call_log_demo_data.xml",
+        "data/campaign_demo_data.xml",
         "data/testimonial_data.xml",
         "data/faq_data.xml",
         "views/crm_lead_views.xml",
+        "views/interntion_operations_views.xml",
         "views/employer_views.xml",
         "views/internship_views.xml",
         "views/mentor_views.xml",
         "views/service_views.xml",
         "views/project_views.xml",
+        "views/call_log_views.xml",
+        "views/market_views.xml",
+        "views/lead_match_views.xml",
         "views/testimonial_views.xml",
         "views/faq_views.xml",
+        "views/lead_generation_views.xml",
+        "views/ai_agent_views.xml",
+        "views/campaign_views.xml",
         "views/dashboard_views.xml",
         "views/menu_views.xml",
     ],
-    "images": [],
+    "images": ["static/description/icon.svg"],
     "installable": True,
     "application": True,
     "auto_install": False,

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="market_uk" model="interntion.market">
+        <field name="code">UK</field>
+        <field name="name">United Kingdom</field>
+        <field name="currency_symbol">£</field>
+        <field name="is_active">True</field>
+    </record>
+    <record id="market_us" model="interntion.market">
+        <field name="code">US</field>
+        <field name="name">United States</field>
+        <field name="currency_symbol">$</field>
+        <field name="is_active">True</field>
+    </record>
+    <record id="market_in" model="interntion.market">
+        <field name="code">IN</field>
+        <field name="name">India</field>
+        <field name="currency_symbol">₹</field>
+        <field name="is_active">True</field>
+    </record>
+
+    <record id="market_price_internship_uk" model="interntion.market.price">
+        <field name="market_id" ref="market_uk"/>
+        <field name="internship_id" ref="internship_1"/>
+        <field name="amount">1200</field>
+        <field name="currency_symbol">£</field>
+    </record>
+    <record id="market_price_internship_us" model="interntion.market.price">
+        <field name="market_id" ref="market_us"/>
+        <field name="internship_id" ref="internship_1"/>
+        <field name="amount">1450</field>
+        <field name="currency_symbol">$</field>
+    </record>
+    <record id="market_price_service_uk" model="interntion.market.price">
+        <field name="market_id" ref="market_uk"/>
+        <field name="service_id" ref="service_cv_job_preparation"/>
+        <field name="amount">99</field>
+        <field name="currency_symbol">£</field>
+    </record>
+    <record id="market_price_service_us" model="interntion.market.price">
+        <field name="market_id" ref="market_us"/>
+        <field name="service_id" ref="service_cv_job_preparation"/>
+        <field name="amount">129</field>
+        <field name="currency_symbol">$</field>
+    </record>
+    <record id="market_price_project_uk" model="interntion.market.price">
+        <field name="market_id" ref="market_uk"/>
+        <field name="project_id" ref="project_1"/>
+        <field name="amount">249</field>
+        <field name="currency_symbol">£</field>
+    </record>
+    <record id="market_price_project_us" model="interntion.market.price">
+        <field name="market_id" ref="market_us"/>
+        <field name="project_id" ref="project_1"/>
+        <field name="amount">349</field>
+        <field name="currency_symbol">$</field>
+    </record>
+</odoo>

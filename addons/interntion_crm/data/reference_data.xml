@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="team_corporate_partnerships" model="crm.team"><field name="name">Corporate Partnerships</field><field name="use_opportunities">True</field></record>
+
+    <record id="industry_technology" model="interntion.industry"><field name="name">Technology &amp; Software</field><field name="code">technology</field><field name="sequence">10</field></record>
+    <record id="industry_finance" model="interntion.industry"><field name="name">Finance &amp; Banking</field><field name="code">finance</field><field name="sequence">20</field></record>
+    <record id="industry_healthcare" model="interntion.industry"><field name="name">Healthcare &amp; Pharma</field><field name="code">healthcare</field><field name="sequence">30</field></record>
+    <record id="industry_marketing" model="interntion.industry"><field name="name">Marketing &amp; Media</field><field name="code">marketing</field><field name="sequence">40</field></record>
+    <record id="industry_engineering" model="interntion.industry"><field name="name">Engineering &amp; Manufacturing</field><field name="code">engineering</field><field name="sequence">50</field></record>
+    <record id="industry_legal" model="interntion.industry"><field name="name">Legal &amp; Compliance</field><field name="code">legal</field><field name="sequence">60</field></record>
+    <record id="industry_real_estate" model="interntion.industry"><field name="name">Real Estate &amp; Property</field><field name="code">real_estate</field><field name="sequence">70</field></record>
+    <record id="industry_consulting" model="interntion.industry"><field name="name">Consulting</field><field name="code">consulting</field><field name="sequence">80</field></record>
+    <record id="industry_education" model="interntion.industry"><field name="name">Education &amp; EduTech</field><field name="code">education</field><field name="sequence">90</field></record>
+    <record id="industry_data" model="interntion.industry"><field name="name">Data Science &amp; AI</field><field name="code">data_science</field><field name="sequence">100</field></record>
+
+    <record id="product_category_student_addons" model="product.category"><field name="name">Student Add-on Services</field></record>
+    <record id="product_cv_writing" model="product.product"><field name="name">ATS-Optimised CV Writing</field><field name="categ_id" ref="product_category_student_addons"/><field name="list_price">99</field></record>
+    <record id="product_linkedin" model="product.product"><field name="name">LinkedIn Profile Optimisation</field><field name="categ_id" ref="product_category_student_addons"/><field name="list_price">79</field></record>
+    <record id="product_mock_interview" model="product.product"><field name="name">Mock Interview Coaching</field><field name="categ_id" ref="product_category_student_addons"/><field name="list_price">129</field></record>
+    <record id="product_project_assistance" model="product.product"><field name="name">Project Assistance</field><field name="categ_id" ref="product_category_student_addons"/><field name="list_price">249</field></record>
+    <record id="addon_cv_writing" model="interntion.addon.service"><field name="name">CV Writing</field><field name="product_id" ref="product_cv_writing"/><field name="sequence">10</field></record>
+    <record id="addon_linkedin" model="interntion.addon.service"><field name="name">LinkedIn Optimisation</field><field name="product_id" ref="product_linkedin"/><field name="sequence">20</field></record>
+    <record id="addon_mock_interview" model="interntion.addon.service"><field name="name">Mock Interview</field><field name="product_id" ref="product_mock_interview"/><field name="sequence">30</field></record>
+    <record id="addon_project_assistance" model="interntion.addon.service"><field name="name">Project Assistance</field><field name="product_id" ref="product_project_assistance"/><field name="sequence">40</field></record>
+</odoo>

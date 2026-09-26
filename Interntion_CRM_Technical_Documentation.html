@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Interntion CRM - Technical Documentation</title>
+<style>
+@page { size: A4; margin: 16mm 15mm 18mm; }
+:root { --ink:#1f2633; --muted:#5f6775; --violet:#563b93; --violet-dark:#2d1b4e; --green:#198754; --line:#dfe3ea; --soft:#f7f5fb; --gold:#9b6a05; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); font:10.3pt/1.5 "Segoe UI", Calibri, sans-serif; }
+h1,h2,h3 { color:var(--violet-dark); line-height:1.2; }
+h1 { font-size:31pt; margin:0 0 10px; letter-spacing:0; }
+h2 { font-size:19pt; margin:28px 0 10px; padding-bottom:6px; border-bottom:2px solid #d8cef0; page-break-after:avoid; }
+h3 { font-size:13pt; margin:18px 0 7px; page-break-after:avoid; }
+h4 { font-size:11pt; margin:13px 0 4px; color:var(--violet); }
+p { margin:6px 0 10px; }
+ul,ol { margin:5px 0 10px 20px; padding:0; }
+li { margin:3px 0; }
+code { font:9.1pt Consolas, "Courier New", monospace; color:#3d286c; background:#f0ecf8; padding:1px 3px; border-radius:2px; }
+table { border-collapse:collapse; width:100%; margin:9px 0 14px; page-break-inside:avoid; }
+th { background:var(--violet); color:white; font-weight:600; text-align:left; }
+th,td { border:1px solid var(--line); padding:6px 7px; vertical-align:top; }
+tr:nth-child(even) td { background:#fbfbfd; }
+.cover { min-height:245mm; display:flex; flex-direction:column; justify-content:center; border-left:9px solid var(--violet); padding:22mm 18mm; background:linear-gradient(145deg,#fff 0%,#f7f4fd 70%,#ebe5f8 100%); }
+.eyebrow { color:var(--violet); font-size:10pt; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; }
+.subtitle { max-width:510px; color:var(--muted); font-size:15pt; line-height:1.45; }
+.meta { margin-top:35mm; color:var(--muted); }
+.note { border-left:4px solid var(--gold); background:#fffbeb; padding:9px 12px; margin:12px 0; }
+.success { border-left:4px solid var(--green); background:#f0fbf5; padding:9px 12px; margin:12px 0; }
+.callout { border:1px solid #d9d0eb; background:var(--soft); padding:10px 12px; margin:10px 0; }
+.flow { background:#f7f5fb; border:1px solid #dfd7ee; padding:11px; font-weight:600; color:#3d286c; text-align:center; margin:10px 0; }
+.page-break { page-break-before:always; }
+.shot { width:100%; border:1px solid #cad0da; box-shadow:0 2px 8px #d8d3e5; margin:8px 0 5px; }
+.caption { font-size:8.8pt; color:var(--muted); text-align:center; margin-bottom:13px; }
+.small { font-size:9pt; color:var(--muted); }
+.toc a { color:var(--violet); text-decoration:none; }
+.file { font-weight:700; color:#39235d; }
+</style>
+</head>
+<body>
+<section class="cover">
+  <div class="eyebrow">Technical and Business Documentation</div>
+  <h1>Interntion CRM</h1>
+  <p class="subtitle">A complete guide to the Odoo CRM for managing student internship placements, corporate partnerships, mentoring, support, catalogue services, and operational accountability.</p>
+  <div class="meta"><strong>Prepared from the live local implementation</strong><br>Workspace: <code>Internsion CRM</code><br>Module: <code>addons/interntion_crm</code><br>Document date: 15 September 2026</div>
+</section>
+
+<section class="page-break">
+<h2>How to Read This Document</h2>
+<p>This document starts with the business problem, then explains the system architecture, screens, data models, code behavior, and operations. It is written for a reader who is new to Odoo and to this project.</p>
+<div class="callout"><strong>Core idea:</strong> Interntion is not using CRM only to collect sales leads. Each student application becomes an operational case that moves from application to screening, matching, interview, offer, active placement, and completion. Employers form a second pipeline. Everything else supports those two journeys.</div>
+<h3>Contents</h3>
+<ol class="toc">
+  <li><a href="#purpose">Business purpose and scope</a></li>
+  <li><a href="#architecture">System architecture and why each layer is required</a></li>
+  <li><a href="#screen">Live dashboard walkthrough</a></li>
+  <li><a href="#workflow">Student and partner workflows</a></li>
+  <li><a href="#models">Data models and code rationale</a></li>
+  <li><a href="#views">Views, menus, actions, and user experience</a></li>
+  <li><a href="#security">Security and access control</a></li>
+  <li><a href="#automation">Automation, SLA, support, and quotations</a></li>
+  <li><a href="#data">Seed data and website integration</a></li>
+  <li><a href="#operations">Running, updating, and production guidance</a></li>
+</ol>
+</section>
+
+<section id="purpose">
+<h2>1. Business Purpose and Scope</h2>
+<p>Interntion helps students access paid internships and career support. The CRM converts that real service journey into a controlled process. Without it, applications, employer conversations, CV reviews, mentor assignments, and urgent support requests would be scattered across spreadsheets, email, and chat.</p>
+<table><tr><th>Business need</th><th>CRM capability</th><th>Why it is required</th></tr>
+<tr><td>Keep every student application visible</td><td>Extended <code>crm.lead</code> placement pipeline</td><td>Provides one owner, one status, and an auditable journey for each student.</td></tr>
+<tr><td>Match students to real opportunities</td><td>Internship and employer catalogues linked to applications</td><td>Prevents duplicate data entry and makes capacity, employer, sector, and placement status visible.</td></tr>
+<tr><td>Respond quickly to students and partners</td><td>SLA deadlines, activities, and escalation monitor</td><td>Protects service quality: student matching is tracked over seven days; partner response is tracked over 24 hours.</td></tr>
+<tr><td>Make management decisions quickly</td><td>Live KPI dashboard with drill-down actions</td><td>Every dashboard number opens the underlying records instead of becoming a static report.</td></tr>
+<tr><td>Handle operational issues</td><td>Placement Support tickets</td><td>Records student, partner, or mentor issues with priority, owner, state, discussion history, and follow-up activities.</td></tr>
+</table>
+<p>The module is declared as an installable Odoo Sales/CRM application in <code>addons/interntion_crm/__manifest__.py</code>. Its dependencies deliberately reuse Odoo capabilities rather than rebuild them: <code>crm</code> provides leads and pipelines, <code>mail</code> provides chatter and activities, <code>sale_management</code> provides quotations, <code>product</code> supports sellable add-ons, and <code>contacts</code> supports contact relationships.</p>
+</section>
+
+<section id="architecture">
+<h2>2. Architecture from Scratch</h2>
+<h3>What Odoo contributes</h3>
+<p>Odoo is an ERP platform. A custom Odoo module does not need to write login, forms, database persistence, permissions, filters, messaging, or navigation from zero. Python model classes define business objects and behavior; XML defines screens, actions, menus, security, and seed records; PostgreSQL stores the data.</p>
+<div class="flow">Browser → Odoo web application → Interntion CRM module → PostgreSQL database</div>
+<h3>Docker Compose</h3>
+<p><code>docker-compose.yml</code> starts repeatable containers for Odoo and PostgreSQL. Docker is required here because it gives every developer the same server and database versions without installing them directly on Windows.</p>
+<table><tr><th>Component</th><th>What it does</th><th>Why it is present</th></tr>
+<tr><td><code>db</code> service</td><td>Runs PostgreSQL 15 with a persistent named volume.</td><td>Odoo requires a relational database. The volume keeps CRM records when the container restarts.</td></tr>
+<tr><td><code>odoo</code> service</td><td>Runs Odoo, exposes port 8069, and mounts <code>./addons</code>.</td><td>The mount lets Python/XML changes be available to Odoo without rebuilding the application image.</td></tr>
+<tr><td>Health check and <code>depends_on</code></td><td>Waits for PostgreSQL readiness before Odoo starts.</td><td>Avoids Odoo booting while the database is unavailable.</td></tr>
+<tr><td>Optional <code>pgadmin</code></td><td>Database administration UI on port 5050.</td><td>Useful for authorised diagnostics; it is excluded unless the <code>tools</code> profile is started.</td></tr>
+<tr><td><code>odoo.conf</code></td><td>Configures add-on paths, database host, credentials, logging, and proxy behavior.</td><td>Separates environment configuration from business code.</td></tr>
+</table>
+<div class="note"><strong>Version note:</strong> the module manifest declares version <code>19.0.2</code> and the Compose image is specified as <code>odoo:19.0</code>. The most recent local Odoo server log identified itself as <code>17.0-20260630</code>. Before production rollout, verify the image actually running with <code>docker compose images</code> and pin the intended Odoo 19 image digest. This is an environment verification point, not a change made by this document.</div>
+</section>
+
+<section id="screen" class="page-break">
+<h2>3. Live Dashboard Walkthrough</h2>
+<img class="shot" src="Interntion_CRM_Dashboard.png" alt="Live Interntion CRM dashboard screenshot">
+<p class="caption">Figure 1. Live Interntion CRM dashboard captured from the local Odoo application.</p>
+<table><tr><th>Screen area</th><th>What it shows</th><th>Why it was implemented</th></tr>
+<tr><td>Top navigation</td><td>Dashboard, Student Journey, Catalogue, Network, and support access.</td><td>Groups daily work by purpose so staff can navigate with fewer decisions.</td></tr>
+<tr><td>Header actions</td><td><strong>Student Pipeline</strong> and <strong>Partners</strong>.</td><td>Gives executives direct access to the two primary operational processes.</td></tr>
+<tr><td>KPI cards</td><td>Total applications, placed students, success rate, industry partners.</td><td>Shows the health of demand, outcomes, conversion, and supply network at a glance.</td></tr>
+<tr><td>Application funnel</td><td>New applications through placed cases.</td><td>Identifies bottlenecks. Each stage is a button calling a native Odoo action with a stage-specific domain.</td></tr>
+<tr><td>Growth health</td><td>Open roles, active mentors, at-risk cases, and student SLA rate.</td><td>Shows operational capacity and potential service failures, not only sales volume.</td></tr>
+<tr><td>Help &amp; support</td><td>Open and urgent support-ticket counts plus <strong>Request Help</strong>.</td><td>Makes escalations available from the command screen; it opens the existing support-ticket form.</td></tr>
+</table>
+<div class="success"><strong>Drill-down design:</strong> dashboard buttons return <code>ir.actions.act_window</code> dictionaries. Odoo then opens a filtered kanban/list/form view of real records. This is preferable to a static dashboard because an operational user can move from a warning or metric directly to the cases needing action.</div>
+</section>
+
+<section id="workflow">
+<h2>4. The Two Primary Workflows</h2>
+<h3>Student placement workflow</h3>
+<div class="flow">New Application → CV/Profile Review → Matched to Partner → CV &amp; Interview Prep → Interview Scheduled → Offer Extended → Placement Active → Placement Completed</div>
+<p>The stage records in <code>data/crm_stage_data.xml</code> belong to the Student Placements sales team. Stages make the kanban board useful: a card moves across columns as the real-world work moves forward. <strong>Placement Completed</strong> is marked as won and folded because it is a completed outcome, while <strong>Not Progressing</strong> is folded because it is a closed non-success path.</p>
+<table><tr><th>Important transition</th><th>Code behavior</th><th>Reason</th></tr>
+<tr><td>Lead enters the system</td><td><code>create()</code> schedules an initial SLA activity.</td><td>Every case immediately has an accountable follow-up instead of relying on memory.</td></tr>
+<tr><td>Matched to Partner</td><td><code>write()</code> records <code>matched_at</code> and <code>sla_completed_at</code>.</td><td>Creates a measurable point at which the student matching commitment was fulfilled.</td></tr>
+<tr><td>Placement Completed</td><td><code>write()</code> schedules an “Issue completion certificate” activity.</td><td>Ensures the final service obligation is not lost after a successful placement.</td></tr>
+</table>
+<h3>Corporate partner workflow</h3>
+<div class="flow">New Enquiry → Qualification Call → Needs/Brief Confirmed → Candidate Shortlist Sent → Agreement/Contract → Active Partner</div>
+<p>Partners use a separate team and <code>interntion_side = 'partner'</code>. This distinction is necessary because a student requires career/placement work, while a partner requires relationship, brief, contract, and account-management work. Partner leads receive a 24-hour response SLA because early response strongly affects partner confidence.</p>
+</section>
+
+<section id="models" class="page-break">
+<h2>5. Data Models and Code Rationale</h2>
+<p>In Odoo, a model is a Python class that maps to a database table. Fields define what the business needs to store. Relations such as <code>Many2one</code> create a link to one related record, while <code>One2many</code> provides the reverse collection. The model files are imported by <code>models/__init__.py</code>, which is required so Odoo can register them at startup.</p>
+<h3>5.1 The central CRM lead</h3>
+<p><span class="file">models/crm_lead.py</span> extends, rather than replaces, Odoo’s standard <code>crm.lead</code>. This is the correct approach because it retains Odoo features such as assignment, activities, messages, stage history, reporting, and conversion behavior.</p>
+<table><tr><th>Field group</th><th>Examples</th><th>Why it exists</th></tr>
+<tr><td>Student profile</td><td><code>x_course_stream</code>, <code>x_industry_sector</code>, <code>x_application_source</code></td><td>Supports matching, source analysis, and counsellor context.</td></tr>
+<tr><td>Placement links</td><td><code>x_internship_id</code>, computed <code>x_employer_id</code>, <code>x_mentor_id</code></td><td>Creates one connected record from candidate to role, employer, and mentor.</td></tr>
+<tr><td>Readiness evidence</td><td><code>x_cv_file</code>, <code>x_cv_reviewed</code>, <code>x_mock_interview_done</code></td><td>Turns preparation work into visible checkpoints rather than unrecorded conversations.</td></tr>
+<tr><td>Payment/outcome</td><td><code>x_is_paid_internship</code>, <code>x_certificate_issued</code></td><td>Tracks the paid-placement promise and final completion deliverable.</td></tr>
+</table>
+<p>The internship onchange copies its sector and paid status into the application. This reduces manual entry and prevents a counsellor from accidentally classifying an application differently from the chosen internship.</p>
+
+<h3>5.2 Operations extension and support</h3>
+<p><span class="file">models/operations.py</span> further extends <code>crm.lead</code> and defines the supporting reference models.</p>
+<table><tr><th>Model / behavior</th><th>Implementation</th><th>Why it is required</th></tr>
+<tr><td><code>interntion.support.ticket</code></td><td>Name, linked lead, reporter type, HTML description, priority, state, assignee; inherits <code>mail.thread</code> and <code>mail.activity.mixin</code>.</td><td>Separates placement incidents from general CRM notes while retaining a clear owner and escalation history.</td></tr>
+<tr><td><code>interntion.industry</code></td><td>Reference model with unique indexed code and sequence.</td><td>Maintains a controlled, reusable list for target industries and reporting.</td></tr>
+<tr><td><code>interntion.addon.service</code></td><td>Links an add-on to Odoo <code>product.product</code>.</td><td>Lets a lead select additional paid services that can be converted into a real quotation.</td></tr>
+<tr><td><code>_compute_sla_deadline()</code></td><td>Student: creation + 7 days. Partner: creation + 24 hours.</td><td>Encodes the service promise consistently for all cases.</td></tr>
+<tr><td><code>_compute_sla_status()</code></td><td>Returns on-track, at-risk, or breached.</td><td>Surfaces time-sensitive cases before the deadline is missed.</td></tr>
+<tr><td><code>action_create_addon_quotation()</code></td><td>Creates <code>sale.order</code> and lines from chosen add-ons.</td><td>Connects service interest to Odoo Sales instead of retyping charges manually.</td></tr>
+</table>
+
+<h3>5.3 Employer, internship, and mentor models</h3>
+<table><tr><th>File and model</th><th>Important fields / methods</th><th>Business reason</th></tr>
+<tr><td><span class="file">employer.py</span><br><code>interntion.employer</code></td><td>Sector, contact information, country, account manager, logo, active partner flag, related internships/application counts; actions open its linked records.</td><td>Creates one source of truth for the companies supplying placement opportunities.</td></tr>
+<tr><td><span class="file">internship.py</span><br><code>interntion.internship</code></td><td>Employer, sector, description, duration, location, paid flag, stipend, positions, application/placed counts.</td><td>Represents the actual role a student can be matched to; count fields make role demand visible.</td></tr>
+<tr><td><span class="file">mentor.py</span><br><code>interntion.mentor</code></td><td>User, contact details, expertise, photo, active flag, related application count.</td><td>Allows workload and specialist availability to be managed rather than assigned informally.</td></tr>
+</table>
+<p>These models inherit Odoo’s <code>mail.thread</code> and <code>mail.activity.mixin</code>. The first provides chatter/audit messages; the second provides activities and due dates. They are deliberately reused instead of custom messaging code.</p>
+
+<h3>5.4 Catalogue and content models</h3>
+<table><tr><th>File</th><th>Purpose</th><th>Why separate from the pipeline</th></tr>
+<tr><td><span class="file">project.py</span></td><td>Project Assistance catalogue: academic level, category, technology stack, price, deliverables.</td><td>Projects are offers/products, not individual student cases.</td></tr>
+<tr><td><span class="file">service.py</span></td><td>Four core services with code, description, icon, sequence, website URL, active state.</td><td>Maintains consistent service content independent of ongoing opportunities.</td></tr>
+<tr><td><span class="file">testimonial.py</span></td><td>Student name, course, role, quote, image, rating, sequence.</td><td>Stores curated marketing proof with ordering and publication control.</td></tr>
+<tr><td><span class="file">faq.py</span></td><td>Question, HTML answer, category, sequence, active state.</td><td>Turns frequently repeated queries into reusable knowledge content.</td></tr>
+</table>
+
+<h3>5.5 Dashboard model</h3>
+<p><span class="file">models/dashboard.py</span> uses a lightweight <code>interntion.dashboard</code> record to compute management metrics from current business data. It is read-only at the view layer. Its helper <code>_student_stage_domain()</code> builds an Odoo search domain for one or more stage names, allowing one source of filtering logic to serve several funnel buttons.</p>
+<p><code>_compute_kpis()</code> calls <code>search_count()</code> for live counts, calculates success rate as placed ÷ total × 100, and counts active support cases. The <code>action_view_*</code> methods return Odoo actions for total applications, stage queues, placed students, employers, internships, mentors, and the support queue. <code>action_create_support_request()</code> opens a blank support-ticket form with the current user preselected as assignee.</p>
+</section>
+
+<section id="views" class="page-break">
+<h2>6. Views, Actions, and Navigation</h2>
+<p>XML views are the user interface layer. They do not replace the model rules; they decide what users see and how they work with it. An <code>ir.actions.act_window</code> action opens a model in a particular view mode and can include a <code>domain</code> filter. A menu item points to an action.</p>
+<table><tr><th>File</th><th>What it defines</th><th>Why it matters</th></tr>
+<tr><td><code>views/menu_views.xml</code></td><td>Root application menu and grouped Dashboard, Student Journey, Catalogue, Network, and Brand Content navigation.</td><td>Creates a work-oriented information architecture instead of a flat list of technical models.</td></tr>
+<tr><td><code>views/crm_lead_views.xml</code></td><td>Lead form additions, Student Journey page, custom kanban, custom list, student and partner actions.</td><td>Gives counsellors the information needed to work a placement without leaving the opportunity.</td></tr>
+<tr><td><code>views/dashboard_views.xml</code></td><td>Read-only management dashboard with KPI buttons, funnel, health, priority, support, and service panels.</td><td>Provides the operational overview and direct record access described in Figure 1.</td></tr>
+<tr><td><code>views/interntion_operations_views.xml</code></td><td>Support ticket list/form, reference model views, operations tab on leads, legacy/action menu definitions.</td><td>Exposes escalation and operational detail in native Odoo interfaces.</td></tr>
+<tr><td>Employer, internship, mentor, project, service, testimonial, FAQ view files</td><td>List/form/kanban layouts and actions for their corresponding models.</td><td>Each entity receives an interface appropriate to its work: browse catalogue, edit detail, or scan pipeline cards.</td></tr>
+</table>
+<h3>Why the kanban pipeline is used</h3>
+<p>The custom lead kanban groups records by <code>stage_id</code> and allows dragging between columns. The cards show the candidate/lead, stage, course, employer, mentor, and related details only when populated. Kanban is used because a placement team needs to see flow and stalled work, not merely a spreadsheet of rows. The tree/list view remains available for filtering, exporting, and dense comparison.</p>
+<h3>Important implementation detail: action context</h3>
+<p>Action contexts set defaults when a user creates a record from an action, for example <code>default_type: 'opportunity'</code> and <code>default_interntion_side: 'student'</code>. XML references such as <code>ref('crm_team_interntion')</code> must be resolved at module-load time through the XML <code>eval</code> attribute. Leaving <code>ref(...)</code> as client-evaluated text causes the browser error “Name ref is not defined”; the corrected operations actions now resolve IDs on the server.</p>
+</section>
+
+<section id="security">
+<h2>7. Security and Access Control</h2>
+<p>Security is split into groups, record rules, and model access CSV rules. This separation is required because “can a user open this model?” and “which records can the user see?” are different questions.</p>
+<table><tr><th>Security layer</th><th>Where defined</th><th>Purpose</th></tr>
+<tr><td>Groups</td><td><code>security/interntion_security.xml</code></td><td>Defines general users, managers, placement counsellors, partnership account managers, mentors, and operations administrators.</td></tr>
+<tr><td>Record rules</td><td><code>interntion_security.xml</code></td><td>Restricts placement counsellors to Student Placements and partnership managers to Corporate Partnerships.</td></tr>
+<tr><td>Model access</td><td><code>security/ir.model.access.csv</code></td><td>Defines read/write/create/delete permissions per model and role.</td></tr>
+</table>
+<p>Managers receive broader CRUD rights because they own configuration and corrections. Regular staff can work operational data but cannot delete it, reducing accidental loss. Marketing-oriented data such as Services, Testimonials, and FAQs is read-only for regular users so approved public content stays controlled.</p>
+</section>
+
+<section id="automation">
+<h2>8. Automation, SLA, Support, and Sales</h2>
+<h3>Hourly SLA monitor</h3>
+<p><code>data/automation_data.xml</code> defines a scheduled job that calls <code>crm.lead.cron_monitor_slas()</code> every hour. The method searches non-won leads, identifies at-risk or breached cases, and schedules an activity only if an equivalent active escalation is not already present. The duplicate check matters: a recurring job must not create an unlimited number of identical alerts.</p>
+<h3>Email templates</h3>
+<p>The same data file defines templates for application receipt, partner acknowledgement, and placement completion. Templates are required for consistent, timely communication; they keep wording and recipient fields centralised rather than manually typed each time.</p>
+<h3>Support workflow</h3>
+<div class="flow">Request Help → Ticket linked to lead → Priority and assignee → New / In progress / Resolved / Closed → Chatter and activity history</div>
+<p>The Help &amp; Support dashboard panel is intentionally small. It does not try to duplicate a helpdesk product; it gives the operations team two immediate signals (open and urgent) and routes staff to the existing, auditable Odoo ticket form.</p>
+<h3>Add-on quotation workflow</h3>
+<p>When a student opportunity has selected <code>addon_service_ids</code>, the lead form exposes <strong>Create Add-on Quotation</strong>. The code creates a standard Odoo sales order and one line per add-on. This is required to connect an operational CRM request to formal commercial records, pricing, and later invoicing.</p>
+</section>
+
+<section id="data">
+<h2>9. Seed Data and Website Integration</h2>
+<p>The <code>data/</code> directory supplies initial records for services, stages, employers, mentors, internships, projects, testimonials, and FAQs. Seed data makes a new database useful immediately and keeps the CRM vocabulary aligned with Interntion’s public offering. It is loaded through the manifest in a deliberate order: reference teams and stages first, catalogue records next, and views/actions afterward.</p>
+<table><tr><th>Controller endpoint</th><th>Result</th><th>Why the route exists</th></tr>
+<tr><td><code>/interntion/apply</code></td><td>Creates a student-side CRM lead; accepts CV upload with a 5 MB limit.</td><td>Converts a public application into an operational case.</td></tr>
+<tr><td><code>/interntion/partner-enquiry</code></td><td>Creates a partner-side lead in the corporate partnership team.</td><td>Keeps employer enquiries separate from student placement work from the first contact.</td></tr>
+<tr><td><code>/interntion/express-interest</code></td><td>Creates a student interest lead.</td><td>Captures lower-friction interest before a complete application is submitted.</td></tr>
+</table>
+<p><code>controllers/website.py</code> uses <code>sudo()</code> when creating leads because website visitors are public users with no regular CRM permissions. It records UTM/source fields where supplied, enabling future marketing attribution. Because public routes accept input, production deployment should add rate limiting, CAPTCHA, and stricter upload scanning.</p>
+</section>
+
+<section id="operations" class="page-break">
+<h2>10. Operating the Project</h2>
+<h3>Local commands</h3>
+<table><tr><th>Task</th><th>Command</th><th>Reason</th></tr>
+<tr><td>Start</td><td><code>docker compose up -d --build</code></td><td>Builds/starts the defined application services in the background.</td></tr>
+<tr><td>Open CRM</td><td><code>http://localhost:8069</code></td><td>Odoo’s published web port.</td></tr>
+<tr><td>Validate Python</td><td><code>docker compose exec -T odoo python3 -m py_compile /mnt/extra-addons/interntion_crm/models/dashboard.py</code></td><td>Quickly catches Python syntax/indentation errors before module loading.</td></tr>
+<tr><td>Apply module changes</td><td><code>docker compose exec -T odoo odoo -c /etc/odoo/odoo.conf -u interntion_crm -d interntion_crm --stop-after-init</code></td><td>Updates model metadata, data, views, and actions in the database.</td></tr>
+<tr><td>Refresh running server</td><td><code>docker compose restart odoo</code></td><td>Ensures the long-running worker reloads the upgraded registry.</td></tr>
+</table>
+<h3>Recommended production controls</h3>
+<ul>
+<li>Replace default database credentials and <code>admin_passwd</code>; never expose them in source control.</li>
+<li>Set <code>list_db = False</code> after database setup, place Odoo behind HTTPS reverse proxy, and set an appropriate worker count.</li>
+<li>Back up PostgreSQL regularly and test restoration, not merely backup creation.</li>
+<li>Use a recognised IANA timezone such as <code>Asia/Kolkata</code>, not obsolete aliases such as <code>Asia/Calcutta</code>, because PostgreSQL aggregation can reject unsupported zone names.</li>
+<li>For large data volumes, replace per-load dashboard computations with cached/reporting measures; the current dashboard intentionally calculates live counts and is best suited to normal operational volumes.</li>
+</ul>
+<h3>Current known scope boundaries</h3>
+<ul>
+<li><code>addon_revenue_month</code> currently displays <code>0.0</code>; it is a placeholder until revenue is derived from sales orders/invoices.</li>
+<li>Support escalation beyond ticket creation is operational/manual; only SLA lead escalation is automated.</li>
+<li>The dashboard depends on stage names as configured in seed data; future renaming should update both the stage configuration and dashboard mappings.</li>
+</ul>
+<div class="success"><strong>Summary:</strong> The module creates a connected operating system for the Interntion service journey: acquire an application or partner enquiry, qualify it, match and mentor the student, manage the internship, resolve support issues, close the placement, and analyse outcomes through live drill-down metrics.</div>
+</section>
+</body>
+</html>

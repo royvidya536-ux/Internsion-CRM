@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="interntion_lead_generation_view_form" model="ir.ui.view">
+        <field name="name">interntion.lead.generation.form</field>
+        <field name="model">interntion.lead.generation</field>
+        <field name="arch" type="xml">
+            <form string="Lead Generation Studio">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        Create clean, deduplicated pipeline records from campaign lists. Resume parsing and AI calling remain opt-in integrations.
+                    </div>
+                    <group>
+                        <group string="Campaign setup">
+                            <field name="side" widget="radio" options="{'horizontal': true}"/>
+                            <field name="source"/>
+                            <field name="campaign"/>
+                            <field name="campaign_id" options="{'no_create_edit': false}"/>
+                        </group>
+                        <group string="Quick test">
+                            <field name="sample_count"/>
+                            <div class="o_form_label">Use sample leads for a safe end-to-end test.</div>
+                        </group>
+                    </group>
+                    <group string="Lead list">
+                        <field name="names" placeholder="Aisha Khan, aisha@example.com&#10;Northstar Labs, hello@northstar.example" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_generate_leads" type="object" string="Generate Leads" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="interntion_lead_generation_action" model="ir.actions.act_window">
+        <field name="name">Generate Leads</field>
+        <field name="res_model">interntion.lead.generation</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

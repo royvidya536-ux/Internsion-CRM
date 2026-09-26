@@ -7,3 +7,10 @@ from . import testimonial
 from . import faq
 from . import crm_lead
 from . import dashboard
+from . import operations
+from . import lead_generation
+from . import ai_agent
+from . import campaign
+from . import market
+from . import call_log
+from . import lead_match

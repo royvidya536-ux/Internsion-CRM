@@ -1,46 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Extend the standard CRM lead form with Interntion-specific fields -->
     <record id="crm_lead_view_form_interntion" model="ir.ui.view">
         <field name="name">crm.lead.form.interntion</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button type="object" name="action_log_call" string="Log Call" class="btn-primary"/>
+                <button type="object" name="action_find_matching_campaigns" string="Find Matching Campaigns" class="btn-secondary"/>
+                <button type="object" name="action_parse_resume" string="Parse Resume" class="btn-primary"/>
+                <button type="object" name="action_request_ai_call" string="Request AI Call" class="btn-secondary" groups="interntion_crm.group_interntion_manager"/>
+                <button type="object" name="action_view_support_tickets" string="Support Tickets" class="btn-secondary"/>
+                <button type="object" name="action_create_addon_quotation" string="Create Add-on Quote" class="btn-primary"/>
+                <field name="stage_id" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
+            </xpath>
+
             <xpath expr="//sheet" position="before">
-                <div class="alert alert-info" role="alert" invisible="x_internship_id">
-                    Link this application to an Internship Opportunity to auto-fill sector and employer.
+                <div class="alert alert-info mb-3" role="alert" invisible="x_internship_id">
+                    Link this opportunity to an internship role to automatically fill the sector, employer and placement details.
                 </div>
             </xpath>
+
+            <field name="partner_name" position="before">
+                <field name="interntion_side" widget="radio" options="{'horizontal': true}"/>
+            </field>
+
             <field name="expected_revenue" position="after">
                 <field name="x_is_paid_internship"/>
             </field>
+
             <xpath expr="//notebook" position="inside">
-                <page string="Interntion Placement" name="interntion_placement">
+                <page string="Student Journey" name="interntion_placement">
                     <group>
-                        <group string="Student">
+                        <group string="Candidate profile">
                             <field name="x_course_stream"/>
                             <field name="x_industry_sector"/>
                             <field name="x_application_source"/>
+                            <field name="campaign_id"/>
+                            <field name="x_cv_filename" invisible="1"/>
                         </group>
-                        <group string="Placement">
+                        <group string="Placement details">
                             <field name="x_internship_id"/>
                             <field name="x_employer_id" readonly="1"/>
                             <field name="x_mentor_id"/>
+                            <field name="user_id" string="Owner"/>
                         </group>
                     </group>
-                    <group string="CV &amp; Preparation">
-                        <field name="x_cv_file" filename="x_cv_filename"/>
-                        <field name="x_cv_filename" invisible="1"/>
-                        <field name="x_cv_reviewed"/>
-                        <field name="x_mock_interview_done"/>
-                        <field name="x_certificate_issued"/>
+
+                    <group string="Career readiness and placement support">
+                        <group>
+                            <field name="x_cv_file" filename="x_cv_filename"/>
+                            <field name="resume_skills"/>
+                            <field name="resume_education"/>
+                            <field name="resume_experience"/>
+                            <field name="resume_match_score" widget="percentage"/>
+                            <field name="call_count"/>
+                            <field name="last_call_date"/>
+                            <field name="ai_call_status"/>
+                            <field name="ai_call_consent"/>
+                            <field name="x_cv_reviewed"/>
+                            <field name="x_mock_interview_done"/>
+                            <field name="x_certificate_issued"/>
+                        </group>
+                        <group string="Parsed resume summary">
+                            <field name="resume_summary" nolabel="1" placeholder="Parsed resume content appears here after clicking Parse Resume."/>
+                        </group>
+                        <group>
+                            <field name="sla_status"/>
+                            <field name="sla_deadline"/>
+                            <field name="matched_at"/>
+                            <field name="certificate_issued_date"/>
+                        </group>
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
 
-    <!-- Standalone kanban view for the Interntion placement pipeline -->
     <record id="crm_lead_view_kanban_interntion" model="ir.ui.view">
         <field name="name">crm.lead.kanban.interntion</field>
         <field name="model">crm.lead</field>
@@ -55,15 +91,18 @@
                 <field name="expected_revenue"/>
                 <templates>
                     <t t-name="card">
-                        <div class="oe_kanban_card oe_kanban_global_click">
-                            <strong><field name="name"/></strong>
-                            <div><field name="partner_name"/></div>
-                            <div t-if="record.x_course_stream.value"><field name="x_course_stream"/></div>
-                            <div t-if="record.x_employer_id.value">
-                                <i class="fa fa-building"/> <field name="x_employer_id"/>
+                        <div class="oe_kanban_card oe_kanban_global_click" style="padding:12px; border-left:4px solid #5f4b95; min-height:120px;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong><field name="name"/></strong>
+                                <span class="badge text-bg-light"><field name="stage_id"/></span>
                             </div>
-                            <div t-if="record.x_mentor_id.value">
-                                <i class="fa fa-user"/> <field name="x_mentor_id"/>
+                            <div class="mt-1"><field name="partner_name"/></div>
+                            <div t-if="record.x_course_stream.value" class="mt-1 text-muted"><field name="x_course_stream"/></div>
+                            <div t-if="record.x_employer_id.value" class="mt-1">
+                                <i class="fa fa-building" title="Industry partner"/> <field name="x_employer_id"/>
+                            </div>
+                            <div t-if="record.x_mentor_id.value" class="mt-1">
+                                <i class="fa fa-user" title="Assigned mentor"/> <field name="x_mentor_id"/>
                             </div>
                         </div>
                     </t>
@@ -72,7 +111,6 @@
         </field>
     </record>
 
-    <!-- Standalone list view for the Interntion placement pipeline -->
     <record id="crm_lead_view_list_interntion" model="ir.ui.view">
         <field name="name">crm.lead.list.interntion</field>
         <field name="model">crm.lead</field>
@@ -85,27 +123,37 @@
                 <field name="x_employer_id"/>
                 <field name="x_mentor_id"/>
                 <field name="stage_id"/>
+                <field name="interntion_side"/>
+                <field name="call_count"/>
+                <field name="last_call_date"/>
                 <field name="x_is_paid_internship"/>
                 <field name="create_date"/>
             </list>
         </field>
     </record>
 
-    <!-- Dedicated action: Internship Applications pipeline -->
     <record id="crm_lead_action_interntion_pipeline" model="ir.actions.act_window">
-        <field name="name">Applications Pipeline</field>
+        <field name="name">Placement Pipeline</field>
         <field name="res_model">crm.lead</field>
         <field name="view_mode">kanban,list,form,graph,pivot,calendar,activity</field>
-        <field name="domain">[('type', '=', 'opportunity'), ('team_id.name', '=', 'Interntion - Internship Placements')]</field>
-        <field name="context">{'default_type': 'opportunity'}</field>
+        <field name="domain">[('type', '=', 'opportunity'), ('interntion_side', '=', 'student')]</field>
+        <field name="context">{'default_type': 'opportunity', 'default_interntion_side': 'student'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create your first student application!
+                Build a healthier student placement pipeline.
             </p>
             <p>
-                Track every student from first application to a confirmed paid internship placement.
+                Track each student from initial enquiry to paid internship, mentorship and final placement completion.
             </p>
         </field>
+    </record>
+
+    <record id="crm_lead_action_partner_pipeline" model="ir.actions.act_window">
+        <field name="name">Partner Pipeline</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('type', '=', 'opportunity'), ('interntion_side', '=', 'partner')]</field>
+        <field name="context">{'default_type': 'opportunity', 'default_interntion_side': 'partner'}</field>
     </record>
 
     <record id="crm_lead_action_interntion_pipeline_view_kanban" model="ir.actions.act_window.view">
