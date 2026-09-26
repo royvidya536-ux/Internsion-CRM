@@ -5,13 +5,13 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: postgres
-      POSTGRES_USER: ${DB_USER:-odoo}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-odoo}
+      POSTGRES_USER: ${DB_USER:?Set DB_USER in .env}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - interntion_db_data:/var/lib/postgresql/data/pgdata
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-odoo} -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:?Set DB_USER in .env} -d postgres"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -33,8 +33,17 @@ services:
       - "${ODOO_LONGPOLLING_PORT:-8072}:8072"
     environment:
       HOST: db
-      USER: ${DB_USER:-odoo}
-      PASSWORD: ${DB_PASSWORD:-odoo}
+      USER: ${DB_USER:?Set DB_USER in .env}
+      PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      PGPASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      ODOO_ADMIN_PASSWD: ${ODOO_ADMIN_PASSWD:?Set ODOO_ADMIN_PASSWD in .env}
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sed "s|__ODOO_ADMIN_PASSWD__|$$ODOO_ADMIN_PASSWD|" /etc/odoo/odoo.conf > /tmp/odoo.conf
+        export ODOO_RC=/tmp/odoo.conf
+        exec /entrypoint.sh odoo --config=/tmp/odoo.conf
     volumes:
       - interntion_odoo_data:/var/lib/odoo
       - ./addons:/mnt/extra-addons
@@ -50,7 +59,7 @@ services:
       - db
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@interntion.co.uk}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?Set PGADMIN_PASSWORD in .env before starting pgAdmin}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "${PGADMIN_PORT:-5050}:80"

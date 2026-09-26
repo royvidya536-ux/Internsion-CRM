@@ -53,6 +53,11 @@ interntion-crm/
 
 ## Run it
 
+Copy `.env.example` to `.env`, then set unique random values for `DB_PASSWORD`,
+`ODOO_ADMIN_PASSWD`, and `PGADMIN_PASSWORD`. Keep `.env` private; it is ignored
+by Git. The Odoo master password is supplied to the container at startup, and
+database credentials are supplied through the container environment.
+
 Open a terminal in this folder (`interntion-crm/`) and run:
 
 ```powershell
@@ -118,12 +123,12 @@ git branch -M main
 git push -u origin main
 ```
 
-> `.env` is git-ignored by default (it only holds local dev credentials — change
-> `DB_PASSWORD` and `admin_passwd` in `odoo.conf` before any real deployment).
+> `.env` is git-ignored and must contain unique secrets. Never put production
+> credentials in tracked configuration or commit them to Git.
 
 ## Production hardening checklist
 
-1. Change `admin_passwd` in `odoo.conf` and all DB credentials in `.env`.
+1. Use strong unique credentials in `.env`; never use sample defaults.
 2. Set `list_db = False` in `odoo.conf` once your database is created, to hide the database manager.
 3. Put Odoo behind a reverse proxy (Nginx/Traefik) with HTTPS.
 4. Enable regular `pg_dump` backups of the `interntion_db_data` volume.
