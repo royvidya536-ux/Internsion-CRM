@@ -37,6 +37,7 @@ class InterntionDashboard(models.Model):
     avg_time_to_first_call = fields.Float(compute="_compute_kpis", string="Avg. Time to First Call")
     addon_revenue_month = fields.Monetary(compute="_compute_kpis", string="Add-on Revenue")
     currency_id = fields.Many2one("res.currency", default=lambda self: self.env.ref("base.GBP", raise_if_not_found=False))
+    support_message = fields.Text(string="Support Message")
 
     def _compute_kpis(self):
         Lead = self.env["crm.lead"]
@@ -249,6 +250,51 @@ class InterntionDashboard(models.Model):
             "view_mode": "form",
             "target": "current",
             "context": {"default_assigned_user_id": self.env.user.id},
+        }
+
+    def action_send_support_message(self):
+        self.ensure_one()
+        message = (self.support_message or "").strip()
+        if not message:
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": "Support request",
+                    "message": "Please type your message before sending.",
+                    "type": "warning",
+                    "sticky": False,
+                },
+            }
+
+        user = self.env.user
+        lead = self.env["crm.lead"].sudo().create({
+            "name": "Support request: %s" % user.name,
+            "partner_name": user.name,
+            "email_from": user.email,
+            "phone": user.phone,
+            "description": message,
+            "team_id": self.env.ref("interntion_crm.crm_team_interntion", raise_if_not_found=False).id or False,
+            "user_id": user.id,
+            "type": "opportunity",
+            "interntion_side": "student",
+        })
+        ticket = self.env["interntion.support.ticket"].sudo().create({
+            "name": "Support request: %s" % user.name,
+            "lead_id": lead.id,
+            "reporter_type": "student",
+            "description": "<p>%s</p>" % message,
+            "priority": "1",
+            "assigned_user_id": user.id,
+        })
+        self.support_message = False
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Support Request Created",
+            "res_model": "interntion.support.ticket",
+            "res_id": ticket.id,
+            "view_mode": "form",
+            "target": "current",
         }
 
     def action_view_student_pipeline(self):
