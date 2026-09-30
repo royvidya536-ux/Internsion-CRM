@@ -11,9 +11,14 @@
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
+    <record id="group_interntion_support_agent" model="res.groups">
+        <field name="name">Support Agent</field>
+        <field name="implied_ids" eval="[(4, ref('group_interntion_user'))]"/>
+    </record>
+
     <record id="group_interntion_manager" model="res.groups">
         <field name="name">Manager: Full Access</field>
-        <field name="implied_ids" eval="[(4, ref('group_interntion_user')), (4, ref('sales_team.group_sale_manager')), (4, ref('base.group_system'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_interntion_user')), (4, ref('group_interntion_support_agent')), (4, ref('sales_team.group_sale_manager')), (4, ref('base.group_system'))]"/>
     </record>
 
     <record id="group_placement_counselor" model="res.groups">
@@ -34,13 +39,13 @@
     </record>
 
     <record id="base.user_root" model="res.users">
-        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_manager')),(4, ref('interntion_crm.group_interntion_user')),(4, ref('interntion_crm.group_placement_counselor')),(4, ref('interntion_crm.group_partnership_account_manager')),(4, ref('interntion_crm.group_interntion_mentor')),(4, ref('interntion_crm.group_operations_admin'))]"/>
+        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_manager')),(4, ref('interntion_crm.group_interntion_support_agent')),(4, ref('interntion_crm.group_interntion_user')),(4, ref('interntion_crm.group_placement_counselor')),(4, ref('interntion_crm.group_partnership_account_manager')),(4, ref('interntion_crm.group_interntion_mentor')),(4, ref('interntion_crm.group_operations_admin'))]"/>
     </record>
     <record id="base.user_admin" model="res.users">
-        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_manager')),(4, ref('interntion_crm.group_interntion_user')),(4, ref('interntion_crm.group_placement_counselor')),(4, ref('interntion_crm.group_partnership_account_manager')),(4, ref('interntion_crm.group_interntion_mentor')),(4, ref('interntion_crm.group_operations_admin'))]"/>
+        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_manager')),(4, ref('interntion_crm.group_interntion_support_agent')),(4, ref('interntion_crm.group_interntion_user')),(4, ref('interntion_crm.group_placement_counselor')),(4, ref('interntion_crm.group_partnership_account_manager')),(4, ref('interntion_crm.group_interntion_mentor')),(4, ref('interntion_crm.group_operations_admin'))]"/>
     </record>
     <record id="base.user_demo" model="res.users">
-        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_user'))]"/>
+        <field name="groups_id" eval="[(4, ref('interntion_crm.group_interntion_user')),(4, ref('interntion_crm.group_interntion_support_agent'))]"/>
     </record>
 
     <record id="rule_placement_counselor_students" model="ir.rule">

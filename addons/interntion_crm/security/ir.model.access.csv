@@ -22,6 +22,7 @@ access_interntion_industry_manager,interntion.industry.manager,model_interntion_
 access_interntion_addon_user,interntion.addon.service.user,model_interntion_addon_service,group_interntion_user,1,0,0,0
 access_interntion_addon_manager,interntion.addon.service.manager,model_interntion_addon_service,group_interntion_manager,1,1,1,1
 access_interntion_support_user,interntion.support.ticket.user,model_interntion_support_ticket,group_interntion_user,1,1,1,0
+access_interntion_support_agent,interntion.support.ticket.agent,model_interntion_support_ticket,group_interntion_support_agent,1,1,1,0
 access_interntion_support_manager,interntion.support.ticket.manager,model_interntion_support_ticket,group_interntion_manager,1,1,1,1
 access_interntion_ai_agent_manager,interntion.ai.agent.manager,model_interntion_ai_agent,group_interntion_manager,1,1,1,1
 access_interntion_market_user,interntion.market.user,model_interntion_market,group_interntion_user,1,1,1,0
