@@ -15,6 +15,10 @@ same PostgreSQL volume.
 
 ## What's inside
 
+See the [end-to-end architecture guide](docs/architecture.md) for the full
+student and partner lifecycle, technical architecture, model relationships,
+and implementation map to the Odoo addon.
+
 ```
 interntion-crm/
 ├── docker-compose.yml     # Odoo + Postgres + optional pgAdmin
@@ -36,7 +40,7 @@ interntion-crm/
 | Website feature | CRM implementation |
 |---|---|
 | "500+ Students Placed / 95% Success Rate / 50+ Industry Partners" | **Live Dashboard** (`Interntion CRM > Dashboard`) computed in real time from CRM data |
-| Internship Opportunities (20+ sectors) | `Internship Opportunities` catalogue + dedicated **Applications Pipeline** (CRM pipeline: New Application → CV Screening → Matched with Employer → Interview → Offer Extended → Placed / Rejected) |
+| Internship Opportunities (20+ sectors) | `Internship Opportunities` catalogue + dedicated **Student Placements** pipeline (New Application → CV/Profile Review → CV & Interview Prep → Matched to Partner → Interview Scheduled → Offer Extended → Placement Active → Placement Completed / Not Progressing) |
 | Project Assistance (150+ AI/ML projects) | `Project Assistance` catalogue with category, level (BTech→PhD), tech stack |
 | Work Experience Support (mentorship) | `Mentors` directory linked to each application |
 | CV & Job Preparation | CV upload + "CV Reviewed" / "Mock Interview Done" / "Certificate Issued" tracking fields on every application |

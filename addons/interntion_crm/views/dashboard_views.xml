@@ -192,58 +192,39 @@
                                 <div class="mt-3 d-flex justify-content-between"><span>Mentors available</span><strong><field name="active_mentors"/></strong></div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div style="border:1px solid #e9e1ff;border-radius:18px;padding:0;background:linear-gradient(180deg,#ffffff,#fbf9ff);min-height:170px;box-shadow:0 18px 36px rgba(62,43,110,.08);overflow:hidden;position:relative;">
-                                <div style="background:linear-gradient(135deg,#35265f,#5f4b95 60%,#7a6ae5);padding:14px 18px;color:#fff;display:flex;justify-content:space-between;align-items:center;">
-                                    <div>
-                                        <div style="font-size:15px;font-weight:600;">Help &amp; support</div>
-                                        <small style="opacity:.9;">Ask a question and get help quickly</small>
-                                    </div>
-                                    <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.14);font-size:11px;font-weight:600;">
-                                        <span style="width:8px;height:8px;background:#6ce3a4;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(108,227,164,.15);"></span>
-                                        Online
-                                    </span>
-                                </div>
-
-                                <div style="padding:16px 16px 0;">
-                                    <div style="background:#f6f1ff;border:1px solid #eadffd;border-radius:14px;padding:12px 14px;max-height:160px;overflow:auto;">
-                                        <div class="mb-2">
-                                            <small class="text-muted" style="display:block;margin-bottom:5px;">Support team</small>
-                                            <div style="display:inline-block;background:#ffffff;color:#3c2b65;border:1px solid #e8e0ff;border-radius:12px 12px 12px 0;padding:8px 10px;max-width:90%;font-size:12px;line-height:1.5;box-shadow:0 3px 12px rgba(95,75,149,.04);">
-                                                Hi there! Ask about applications, placements, CV review, onboarding, or partner support.
-                                            </div>
-                                        </div>
-                                        <div class="text-end">
-                                            <div style="display:inline-block;background:linear-gradient(135deg,#5f4b95,#7a6ae5);color:#ffffff;border-radius:12px 12px 0 12px;padding:8px 10px;max-width:90%;font-size:12px;line-height:1.5;box-shadow:0 8px 18px rgba(95,75,149,.18);">
-                                                I need help with my internship application and visa guidance.
-                                            </div>
+                        <div style="position:fixed;right:22px;bottom:22px;z-index:9999;width:360px;max-width:calc(100vw - 24px);font-family:inherit;">
+                            <div style="background:#ffffff;border:1px solid #e7e4ef;border-radius:18px;box-shadow:0 18px 40px rgba(32,24,58,.16);overflow:hidden;">
+                                <div style="background:linear-gradient(135deg,#4b3a79,#7d6ab0);padding:12px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center;">
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <span style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;">💬</span>
+                                        <div>
+                                            <div style="font-size:16px;font-weight:700;">Chat support</div>
+                                            <small style="opacity:.9;">We are online</small>
                                         </div>
                                     </div>
-
-                                    <div class="mt-3">
-                                        <field name="support_message" nolabel="1" rows="2" placeholder="Type your message..." style="width:100%;border:1px solid #e3dcf8;border-radius:10px;padding:10px 12px;background:#ffffff;color:#2a2140;resize:none;box-shadow:none;min-height:68px;"/>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <small class="text-muted">Usually replies within 10 minutes</small>
-                                        <button type="object" name="action_send_support_message" class="btn btn-primary" string="Send" style="padding:7px 18px;border-radius:10px;font-weight:600;"/>
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <span style="width:8px;height:8px;background:#61d698;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(97,214,152,.2);"></span>
+                                        <span style="font-size:22px;font-weight:700;cursor:pointer;line-height:1;">×</span>
                                     </div>
                                 </div>
-
-                                <div class="mt-3" style="padding:0 16px 16px;">
-                                    <div style="border-top:1px solid #f1ebff;padding-top:12px;">
-                                        <button type="object" name="action_view_support_queue" style="width:100%;text-align:left;border:0;background:transparent;padding:0;">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span style="font-weight:500;">Open support requests</span>
-                                                <strong><field name="open_support_tickets"/></strong>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                                <span style="font-weight:500;">Urgent requests</span>
-                                                <strong style="color:#c2574a;"><field name="urgent_support_tickets"/></strong>
-                                            </div>
-                                        </button>
+                                <div style="padding:14px 14px 10px;background:linear-gradient(180deg,#faf8ff,#f5f1ff);max-height:260px;overflow:auto;">
+                                    <div style="margin-bottom:12px;">
+                                        <div style="display:inline-block;background:#f0ebff;color:#3c2b65;border:1px solid #e5defd;border-radius:12px 12px 12px 0;padding:8px 10px;font-size:12px;line-height:1.5;max-width:85%;">Hi! I can help with placement, onboarding, documents, or support requests.</div>
+                                    </div>
+                                    <div style="text-align:right;margin-bottom:8px;">
+                                        <div style="display:inline-block;background:#6a4fa0;color:#fff;border-radius:12px 12px 0 12px;padding:8px 10px;font-size:12px;line-height:1.5;max-width:85%;">I need help with my internship application.</div>
                                     </div>
                                 </div>
+                                <div style="padding:10px 12px 12px;background:#fff;border-top:1px solid #f0eef9;">
+                                    <field name="support_message" nolabel="1" rows="2" placeholder="Type your message..." style="width:100%;border:1px solid #e8e0f9;border-radius:10px;padding:10px 12px;background:#fff;color:#2c2440;resize:none;min-height:68px;box-shadow:none;"/>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+                                        <small class="text-muted">Usually replies in minutes</small>
+                                        <button type="object" name="action_send_support_message" class="btn btn-primary" string="Send" style="padding:8px 14px;border-radius:10px;background:#7d6ab0;border:1px solid #7d6ab0;"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:flex;justify-content:center;align-items:center;margin-top:12px;">
+                                <button type="object" name="action_create_support_request" class="btn btn-primary" string="Chat" style="display:flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#6e5aa0,#8a74ba);border:1px solid #6e5aa0;box-shadow:0 12px 28px rgba(32,24,58,.18);font-size:18px;font-weight:700;padding:0;"/>
                             </div>
                         </div>
                         <div class="col-xl-6">
