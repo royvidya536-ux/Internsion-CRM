@@ -287,6 +287,12 @@ class InterntionDashboard(models.Model):
             "priority": "1",
             "assigned_user_id": user.id,
         })
+        ticket.message_post(
+            body=message,
+            message_type="comment",
+            subtype_xmlid="mail.mt_note",
+            author_id=user.partner_id.id,
+        )
         self.support_message = False
         return {
             "type": "ir.actions.act_window",
