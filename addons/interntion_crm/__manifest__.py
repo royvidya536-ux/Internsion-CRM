@@ -3,7 +3,7 @@
     "version": "19.0.2",
     "category": "Sales/CRM",
     "summary": "Full CRM for Interntion - UK Paid Internship Placement Platform",
-        "description": "Complete Odoo CRM for Interntion's UK paid internship placement platform. Includes applications pipeline, employers, internship opportunities, project assistance, mentors, services, testimonials, FAQs and live KPIs.",
+    "description": "Complete Odoo CRM for Interntion's UK paid internship placement platform. Includes applications pipeline, employers, internship opportunities, project assistance, mentors, services, testimonials, FAQs and live KPIs.",
     "author": "Interntion",
     "website": "https://interntion.co.uk",
     "license": "LGPL-3",
