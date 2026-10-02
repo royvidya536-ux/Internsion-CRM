@@ -1,2 +1,3 @@
 phonenumbers
 pypdf
+numpy
